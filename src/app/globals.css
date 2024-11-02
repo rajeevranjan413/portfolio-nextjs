@@ -2,26 +2,80 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* styles.css or a global styles file */
+::-webkit-scrollbar {
+  height: 8px;
+  /* Height of the horizontal scrollbar */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  /* Background of the track */
+  border-radius: 10px;
+  /* Rounded corners for the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.6);
+  /* Color of the scrollbar thumb */
+  border-radius: 10px;
+  /* Rounded corners for the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.9);
+  /* Color on hover */
+}
+
+.typing-animation {
+  display: inline-block;
+  overflow: hidden;
+  /* Hide the text overflow */
+  white-space: nowrap;
+  /* Prevent the text from wrapping */
+  border-right: 0.15em solid;
+  /* Cursor effect */
+  animation: typing 6s steps(40, end), blink-caret 1s step-end infinite;
+  /* Increased steps for smoothness */
+  font-family: monospace;
+  /* Optional: for precise alignment, monospace fonts work better */
+}
+
+/* Typing animation */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 23ch;
+    /* Width defined in characters, based on the text length */
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* Blinking caret animation */
+@keyframes blink-caret {
+  50% {
+    border-color: transparent;
+    /* Hide cursor */
+  }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@keyframes shadow-pulse {
+  0% {
+    box-shadow: 0 0 40px rgba(7, 7, 7, 0.2), 0 0 20px rgba(255, 255, 255, 0.1);
   }
+
+  50% {
+    box-shadow: 0 0 40px rgba(104, 103, 103, 0.4), 0 0 40px rgba(255, 255, 255, 0.2);
+  }
+
+  100% {
+    box-shadow: 0 0 40px rgba(225, 225, 225, 0.2), 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Apply the animation to the shadow background */
+.shadow-animation {
+  animation: shadow-pulse 2s infinite;
 }
