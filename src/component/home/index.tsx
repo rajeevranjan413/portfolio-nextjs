@@ -1,7 +1,4 @@
 "use client";
-import Image from "next/image";
-import { useState, useEffect } from "react";
-import { FaFacebook, FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa";
 import { ContactSection } from "./ContactSection";
 
 import Navbar from "../../Layouts/Navbar";

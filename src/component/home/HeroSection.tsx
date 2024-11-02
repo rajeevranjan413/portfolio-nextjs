@@ -5,7 +5,7 @@ export const HeroSection = () => {
         <section className="bg-gray-900 text-white py-28">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h1 className="text-5xl font-bold mb-6 md:text-6xl">
-                    Hi, I'm Rajeev Ranjan
+                    {` Hi, I'm Rajeev Ranjan`}
                 </h1>
 
                 {/* Typing animation */}

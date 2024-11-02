@@ -56,7 +56,7 @@ const fullStackDeveloper = {
                         <div className="text-gray-300 space-y-4 mt-6">
                             {/* Introduction */}
                             <p className="text-sm sm:text-base">
-                                Hi, I'm Rajeev Ranjan, a FullStack Developer skilled in various programming languages, frameworks, databases, and tools. I have experience in:
+                                {`Hi, I'm Rajeev Ranjan, a FullStack Developer skilled in various programming languages, frameworks, databases, and tools. I have experience in:`}
                             </p>
 
                             {/* Skills Section */}
@@ -237,8 +237,8 @@ const fullStackDeveloper = {
                                 <strong>Experience:</strong>
                             </p>
                             <ul className="list-disc pl-5 text-sm sm:text-base space-y-2">
-                                <li>Next.js Developer at <span className="text-indigo-400">Ubuy India</span>, Feb’24 - Oct’24</li>
-                                <li>FullStack Developer at <span className="text-indigo-400">Apna School ERP</span>, Oct’24 - Current</li>
+                                <li>Next.js Developer at <span className="text-indigo-400">Ubuy India</span>, {`Feb’24 - Oct’24`}</li>
+                                <li>FullStack Developer at <span className="text-indigo-400">Apna School ERP</span>, {`Oct’24 - Current`}</li>
                             </ul>
                         </div>
 
