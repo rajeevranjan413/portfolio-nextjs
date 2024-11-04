@@ -140,24 +140,25 @@ const fullStackDeveloper = {
                             {/* Introduction */}
                             <div className="text-xs sm:text-sm md:text-base lg:text-lg space-y-4">
                                 <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-                                    Hi, I'm <span className="text-indigo-300 font-medium">Rajeev Ranjan</span>, an Indian software engineer and freelance developer passionate about building innovative web applications. Currently based in <span className="text-indigo-300 font-medium">Jaipur</span>, I'm excited to share my journey with you.
+                                    Hi, I&apos;m <span className="text-indigo-300 font-medium">Rajeev Ranjan</span>, an Indian software engineer and freelance developer passionate about building innovative web applications. Currently based in <span className="text-indigo-300 font-medium">Jaipur</span>, I&apos;m excited to share my journey with you.
                                 </p>
                                 <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-                                    With a <span className="text-indigo-300 font-medium">Bachelor's degree in Computer Science</span> from <span className="text-indigo-300 font-medium">Poornima Institute of Engineering and Technology</span>, I've developed a strong foundation in full-stack development. My experience includes working with technologies like <span className="text-indigo-300 font-medium">Nest.js, Next.js, React,</span> and <span className="text-indigo-300 font-medium">Express.js</span>. I've collaborated on projects like the <span className="text-indigo-300 font-medium">e-commerce </span>platform for Ubuy.
+                                    With a <span className="text-indigo-300 font-medium">Bachelor&apos;s degree in Computer Science</span> from <span className="text-indigo-300 font-medium">Poornima Institute of Engineering and Technology</span>, I&apos;ve developed a strong foundation in full-stack development. My experience includes working with technologies like <span className="text-indigo-300 font-medium">Nest.js, Next.js, React,</span> and <span className="text-indigo-300 font-medium">Express.js</span>. I&apos;ve collaborated on projects like the <span className="text-indigo-300 font-medium">e-commerce</span> platform for Ubuy.
                                 </p>
                                 <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-                                    My freelance journey began while honing my skills, enabling me to work with diverse clients and projects. I help businesses create minimum viable products (MVPs) and provide tailored solutions. I'm also part of the <span className="text-indigo-300 font-medium">Dev Learn community</span>, where I conduct workshops on computer science fundamentals.
+                                    My freelance journey began while honing my skills, enabling me to work with diverse clients and projects. I help businesses create minimum viable products (MVPs) and provide tailored solutions. I&apos;m also part of the <span className="text-indigo-300 font-medium">Dev Learn community</span>, where I conduct workshops on computer science fundamentals.
                                 </p>
                                 <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
                                     I thrive on problem-solving and enjoy tackling challenges, whether optimizing performance or designing user-friendly interfaces. I host workshops to share my knowledge and skills.
                                 </p>
                                 <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-                                    I enjoy solving algorithmic challenges and contributing to open-source projects. I'm always eager to learn and explore new technologies.
+                                    I enjoy solving algorithmic challenges and contributing to open-source projects. I&apos;m always eager to learn and explore new technologies.
                                 </p>
                                 <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
                                     Thank you for taking the time to learn more about me!
                                 </p>
                             </div>
+
 
                             {/* Experience Section */}
                             <div className="space-y-4 mt-8">
