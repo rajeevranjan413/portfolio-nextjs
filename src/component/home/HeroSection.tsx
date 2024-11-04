@@ -9,17 +9,21 @@ export const HeroSection = () => {
                 </h1>
 
                 {/* Typing animation */}
-                <p className="typing-animation text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-10 max-w-full break-words">
+                <p className="typing-animation block text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-10 max-w-full break-words">
                     FullStack Developer with experience in React, Next.js, Node.js, and
                     more.
                 </p>
+                {/* <p className=" md:hidden text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-10 max-w-full">
+                    FullStack Developer with experience in React, Next.js, Node.js, and
+                    more.
+                </p> */}
 
                 <div></div>
 
                 {/* Social Icons */}
                 <div className="flex justify-center space-x-6 mb-8">
                     <a
-                        href="https://www.linkedin.com"
+                        href="https://www.linkedin.com/in/rajeev-ranjan-dev"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-2xl hover:text-indigo-500 transition duration-300"
@@ -27,7 +31,7 @@ export const HeroSection = () => {
                         <FaLinkedin />
                     </a>
                     <a
-                        href="https://github.com"
+                        href="https://github.com/rajeevranjan413"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-2xl hover:text-indigo-500 transition duration-300"
@@ -53,8 +57,8 @@ export const HeroSection = () => {
                         See My Work
                     </a>
                     <a
-                        href="/resume.pdf"
-                        download
+                        href="/assets/resume.pdf"
+                        target="_blank"
                         className="bg-transparent border border-indigo-500 text-indigo-500 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-indigo-500 hover:text-white transition duration-300"
                     >
                         Download Resume
