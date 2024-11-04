@@ -9,14 +9,18 @@ export const HeroSection = () => {
                 </h1>
 
                 {/* Typing animation */}
-                <p className="typing-animation block text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-10 max-w-full break-words">
+                <div className="hidden md:block">
+                <p className="typing-animation text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-10 max-w-full">
                     FullStack Developer with experience in React, Next.js, Node.js, and
                     more.
                 </p>
-                {/* <p className=" md:hidden text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-10 max-w-full">
+                </div>
+                <div className="md:hidden">
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-10 max-w-full">
                     FullStack Developer with experience in React, Next.js, Node.js, and
                     more.
-                </p> */}
+                </p>
+                </div>
 
                 <div></div>
 

@@ -5,34 +5,81 @@ const skills = {
     "Programming Languages": [
         {
             name: "C",
-            icon: null, // No icon specified
+            icon: null,
+        },
+        {
+            name: "C++",
+            icon: null,
         },
         {
             name: "JavaScript",
-            icon: (
-                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                    <rect width="512" height="512" fill="#f7df1e" rx="15%"></rect>
-                    <path d="m324,370c10,17 24,29 47,29 20,0 33,-10 33,-24 0,-16 -13,-22 -35,-32l-12,-5c-35,-15 -58,-33 -58,-72 0,-36 27,-64 70,-64 31,0 53,11 68,39l-37,24c-8,-15 -17,-21 -31,-21 -14,0 -23,9 -23,21 0,14 9,20 30,29l12,5c41,18 64,35 64,76 0,43 -34,67 -80,67 -45,0 -74,-21 -88,-49z"></path>
-                </svg>
-            ),
+            icon: null,
         },
-        // Add other programming languages similarly
+        {
+            name: "TypeScript",
+            icon: null,
+        },
     ],
-    "Web Frameworks": [
+    "Libraries & Frameworks": [
+        {
+            name: "Node.js",
+            icon: null,
+        },
         {
             name: "React.js",
-            icon: (
-                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-                    <g fill="#61DAFB">
-                        <circle cx="64" cy="64" r="11.4"></circle>
-                        <path d="M107.3 45.2c-2.2-.8-4.5-1.6-6.9-2.3.6-2.4 1.1-4.8 1.5-7.1 2.1-13.2-.2-22.5-6.6-26.1-1.9-1.1-4-1.6-6.4-1.6-7 0-15.9 5.2-24.9 13.9-9-8.7-17.9-13.9-24.9-13.9-2.4 0-4.5.5-6.4 1.6-6.4 3.7-8.7 13-6.6 26.1.4 2.3.9 4.7 1.5 7.1-2.4.7-4.7 1.4-6.9 2.3-12.5 4.8-19.3 11.4-19.3 18.8s6.9 14 19.3 18.8c2.2.8 4.5 1.6 6.9 2.3-.6 2.4-1.1 4.8-1.5 7.1-2.1 13.2.2 22.5 6.6 26.1 1.9 1.1 4 1.6 6.4 1.6 7.1 0 16-5.2 24.9-13.9 9 8.7 17.9 13.9 24.9 13.9 2.4 0 4.5-.5 6.4-1.6 6.4-3.7 8.7-13 6.6-26.1-.4-2.3-.9-4.7-1.5-7.1 2.4-.7 4.7-1.4 6.9-2.3 12.5-4.8 19.3-11.4 19.3-18.8s-6.8-14-19.3-18.8z"></path>
-                    </g>
-                </svg>
-            ),
+            icon: null,
         },
-        // Add other frameworks similarly
+        {
+            name: "Express.js",
+            icon: null,
+        },
+        {
+            name: "Next.js",
+            icon: null,
+        },
+        {
+            name: "Tailwind CSS",
+            icon: null,
+        },
+        {
+            name: "Redux",
+            icon: null,
+        },
+    ],
+    "Databases": [
+        {
+            name: "MongoDB",
+            icon: null,
+        },
+        {
+            name: "MySQL",
+            icon: null,
+        },
+        {
+            name: "Redis",
+            icon: null,
+        },
+    ],
+    "Tools & Software": [
+        {
+            name: "Linux",
+            icon: null,
+        },
+        {
+            name: "Git",
+            icon: null,
+        },
+        {
+            name: "Jira",
+            icon: null,
+        },
+        {
+            name: "Turborepo",
+            icon: null,
+        },
     ],
 };
+
 
 
 const AboutSection = () => {
@@ -89,29 +136,78 @@ const fullStackDeveloper = {
                         </div>
 
                         {/* text content */}
-                        <div className="text-gray-300 mt-6 space-y-4 p-4 sm:p-6 lg:p-8 max-w-screen-lg">
+                        <div className="text-gray-300 mt-6 space-y-6 p-6 sm:p-8 lg:p-10 max-w-screen-lg bg-gray-800 rounded-lg shadow-lg mx-auto">
                             {/* Introduction */}
-                            <p className="text-xs sm:text-sm md:text-base lg:text-lg">
-                                {`Hi, I'm Rajeev Ranjan, a FullStack Developer skilled in various programming languages, frameworks, databases, and tools. I have experience in:`}
-                            </p>
+                            <div className="text-xs sm:text-sm md:text-base lg:text-lg space-y-4">
+                                <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
+                                    Hi, I'm <span className="text-indigo-300 font-medium">Rajeev Ranjan</span>, an Indian software engineer and freelance developer passionate about building innovative web applications. Currently based in <span className="text-indigo-300 font-medium">Jaipur</span>, I'm excited to share my journey with you.
+                                </p>
+                                <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
+                                    With a <span className="text-indigo-300 font-medium">Bachelor's degree in Computer Science</span> from <span className="text-indigo-300 font-medium">Poornima Institute of Engineering and Technology</span>, I've developed a strong foundation in full-stack development. My experience includes working with technologies like <span className="text-indigo-300 font-medium">Nest.js, Next.js, React,</span> and <span className="text-indigo-300 font-medium">Express.js</span>. I've collaborated on projects like the <span className="text-indigo-300 font-medium">e-commerce </span>platform for Ubuy.
+                                </p>
+                                <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
+                                    My freelance journey began while honing my skills, enabling me to work with diverse clients and projects. I help businesses create minimum viable products (MVPs) and provide tailored solutions. I'm also part of the <span className="text-indigo-300 font-medium">Dev Learn community</span>, where I conduct workshops on computer science fundamentals.
+                                </p>
+                                <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
+                                    I thrive on problem-solving and enjoy tackling challenges, whether optimizing performance or designing user-friendly interfaces. I host workshops to share my knowledge and skills.
+                                </p>
+                                <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
+                                    I enjoy solving algorithmic challenges and contributing to open-source projects. I'm always eager to learn and explore new technologies.
+                                </p>
+                                <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
+                                    Thank you for taking the time to learn more about me!
+                                </p>
+                            </div>
+
+                            {/* Experience Section */}
+                            <div className="space-y-4 mt-8">
+                                <h2 className="text-2xl font-semibold text-indigo-400">Experience</h2>
+
+                                {/* Apna School App */}
+                                <div className="space-y-2">
+                                    <h3 className="text-lg font-semibold text-gray-100">Full Stack Developer</h3>
+                                    <p className="text-sm sm:text-base text-gray-400">
+                                        <span className="font-medium">Apna School App</span> · Jhotwara, Jaipur, Rajasthan, India · <span className="italic">Oct 2024 - Present</span>
+                                    </p>
+                                    <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
+                                        Working on an <span className="text-indigo-300 font-medium">education management system</span> using <span className="text-indigo-300 font-medium">Next.js, NestJS, Zustand, MongoDB,</span> and <span className="text-indigo-300 font-medium">TypeScript</span>. My role includes developing features for communication between teachers, students, and parents, and creating modules for data management and performance analytics.
+                                    </p>
+                                </div>
+
+                                {/* Ubuy Project */}
+                                <div className="space-y-2">
+                                    <h3 className="text-lg font-semibold text-gray-100">Frontend Developer</h3>
+                                    <p className="text-sm sm:text-base text-gray-400">
+                                        <span className="font-medium">Ubuy</span> · Mansarovar, Jaipur, Rajasthan, India · <span className="italic">Feb 2024 - Oct 2024</span>
+                                    </p>
+                                    <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
+                                        Leading frontend development for an <span className="text-indigo-300 font-medium">e-commerce platform</span> with a focus on enhancing <span className="text-indigo-300 font-medium">user experience</span> and implementing features like <span className="text-indigo-300 font-medium">product filtering</span> and <span className="text-indigo-300 font-medium">API integrations</span>. Using <span className="text-indigo-300 font-medium">Next.js, TypeScript, Redux, Tailwind CSS,</span> and <span className="text-indigo-300 font-medium">SQL</span> to create scalable solutions.
+                                    </p>
+                                </div>
+                            </div>
 
                             {/* Skills Section */}
-                            <ul className="list-disc space-y-2">
-                                {Object.entries(skills).map(([category, skillsList]) => (
-                                    <li key={category} className="flex flex-col sm:flex-row sm:items-start space-y-1 sm:space-y-0 sm:space-x-2">
-                                        <strong className="text-sm sm:text-base">{category}:</strong>
-                                        <span className="flex flex-wrap gap-2 sm:gap-4">
-                                            {skillsList.map((skill) => (
-                                                <span key={skill.name} className="flex items-center space-x-1 sm:space-x-2">
-                                                    {skill.icon && skill.icon}
-                                                    <span className="text-indigo-400 text-xs sm:text-sm md:text-base">{skill.name}</span>
-                                                </span>
-                                            ))}
-                                        </span>
-                                    </li>
-                                ))}
-                            </ul>
+                            <div className="mt-8 space-y-4">
+                                <h2 className="text-2xl font-semibold text-indigo-400">Skills</h2>
+                                <ul className="list-disc pl-4 space-y-3">
+                                    {Object.entries(skills).map(([category, skillsList]) => (
+                                        <li key={category} className="space-y-1">
+                                            <strong className="text-base text-gray-100">{category}:</strong>
+                                            <div className="flex flex-wrap gap-3 pt-1">
+                                                {skillsList.map((skill) => (
+                                                    <span key={skill.name} className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-md shadow-sm">
+                                                        {skill.icon && skill.icon}
+                                                        <span className="text-sm sm:text-base text-indigo-400">{skill.name}</span>
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
+
+
 
 
                     </div>
