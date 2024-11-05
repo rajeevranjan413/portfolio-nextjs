@@ -70,18 +70,18 @@ export const ContactSection = () => {
               Contact Details
             </h3>
             <p className="text-gray-300 mb-2">
-              Phone: <span className="text-blue-400">+123 456 7890</span>
+              Phone: <span className="text-blue-400">+917484074135</span>
             </p>
             <p className="text-gray-300 mb-2">
-              Email: <span className="text-blue-400">example@example.com</span>
+              Email: <span className="text-blue-400">rajuranjan413@gmail.com</span>
             </p>
             <p className="text-gray-300">
               LinkedIn:{" "}
               <a
-                href="https://linkedin.com"
+                href="https://linkedin.com/in/rajeev-ranjan-dev"
                 className="text-blue-400 hover:underline"
               >
-                linkedin.com/in/yourprofile
+                linkedin.com/in/rajeev-ranjan-dev
               </a>
             </p>
           </div>

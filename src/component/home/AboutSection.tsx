@@ -12,29 +12,50 @@ const skills = {
             icon: null,
         },
         {
+            name: "Node.js",
+            icon: null,
+        },
+        {
             name: "JavaScript",
             icon: null,
         },
         {
             name: "TypeScript",
             icon: null,
-        },
+        }
+
     ],
-    "Libraries & Frameworks": [
+    "Frontend Technologies": [
         {
-            name: "Node.js",
+            name:"HTML",
             icon: null,
         },
         {
-            name: "React.js",
+            name: "CSS",
             icon: null,
         },
         {
-            name: "Express.js",
+            name: "JavaScript",
             icon: null,
         },
         {
-            name: "Next.js",
+            name: "ReactJs",
+            icon: null,
+        },
+        {
+            name: "React Native",
+            icon: null,
+        },
+        {
+            name: "NextJs",
+            icon: null,
+        },
+        {
+            name: "Redux",
+            icon: null,
+        },
+        {
+            name: "Zustand",
             icon: null,
         },
         {
@@ -42,11 +63,34 @@ const skills = {
             icon: null,
         },
         {
-            name: "Redux",
+            name: "Chakra UI",
             icon: null,
         },
+        {
+            name: "Webpack",
+            icon: null,
+        }, 
     ],
-    "Databases": [
+    "Backend Technologies": [
+        {
+            name:"ExpressJs"
+        },
+        {
+            name: "NestJS",
+            icon: null,
+        },
+        {
+            name: "REST APIs",
+            icon: null,
+        },
+        {
+            name: "Mongoose",
+            icon: null,
+        },
+        {
+            name: "Sequelize",
+            icon: null,
+        },
         {
             name: "MongoDB",
             icon: null,
@@ -58,15 +102,47 @@ const skills = {
         {
             name: "Redis",
             icon: null,
-        },
+        }, 
     ],
-    "Tools & Software": [
+    "DevOps and Tools": [
         {
             name: "Linux",
             icon: null,
         },
         {
             name: "Git",
+            icon: null,
+        },
+        {
+            name: "GitHub",
+            icon: null,
+        },
+        {
+            name: "GitLab",
+            icon: null,
+        },
+        {
+            name: "GitHub Actions",
+            icon: null,
+        },
+        {
+            name: "Docker",
+            icon: null,
+        },
+        {
+            name: "AWS",
+            icon: null,
+        },
+        {
+            name: "Jest",
+            icon: null,
+        },
+        {
+            name: "Postman",
+            icon: null,
+        },
+        {
+            name: "Nginx",
             icon: null,
         },
         {
@@ -79,6 +155,45 @@ const skills = {
         },
     ],
 };
+
+
+const experienceData = [
+    {
+        position: (<>FullStack Developer |<span className="text-gray-300 font-normal italic"> Typescript, Nestjs, Nextjs, Zustand, MongoDb</span></>),
+        company: "Apna School App",
+        location: "Jhotwara, Jaipur, Rajasthan, India",
+        dates: "Oct 2024 - Present",
+        description: (
+            <>
+                Working on an <span className="text-indigo-300 font-medium">education management system</span> using <span className="text-indigo-300 font-medium">Next.js, NestJS, Zustand, MongoDB,</span> and <span className="text-indigo-300 font-medium">TypeScript</span>. My role includes developing features for communication between teachers, students, and parents, and creating modules for data management and performance analytics.
+            </>
+        )
+    },
+    {
+        position: (<>FullStack Developer |<span className="text-gray-300 font-normal italic"> Typescript, Nextjs, Expressjs, Redux, SQL, Redis</span></>),
+        company: "Ubuy",
+        location: "Mansarovar, Jaipur, Rajasthan, India",
+        dates: "Feb 2024 - Oct 2024",
+        description: (
+            <>
+                Leading frontend development for an <span className="text-indigo-300 font-medium">e-commerce platform</span> with a focus on enhancing <span className="text-indigo-300 font-medium">user experience</span> and implementing features like <span className="text-indigo-300 font-medium">product filtering</span> and <span className="text-indigo-300 font-medium">API integrations</span>. Using <span className="text-indigo-300 font-medium">Next.js, TypeScript, Redux, Tailwind CSS,</span> and <span className="text-indigo-300 font-medium">SQL</span> to create scalable solutions.
+            </>
+        )
+    },
+    {
+        position:(<>FullStack Intern |<span className="text-gray-300 font-normal italic"> HTML5, CSS, Javascript, Nodejs, Tailwind, Firebase</span></>),
+        company: "Ventureheap Private Limited",
+        location: "Agrasen Nagar, Gopal Pura Mode, Jaipur, Rajasthan",
+        dates: "Feb 2024 - Oct 2024",
+        description: (
+            <>
+                Leading frontend development for an <span className="text-indigo-300 font-medium">e-commerce platform</span> with a focus on enhancing <span className="text-indigo-300 font-medium">user experience</span> and implementing features like <span className="text-indigo-300 font-medium">product filtering</span> and <span className="text-indigo-300 font-medium">API integrations</span>. Using <span className="text-indigo-300 font-medium">Next.js, TypeScript, Redux, Tailwind CSS,</span> and <span className="text-indigo-300 font-medium">SQL</span> to create scalable solutions.
+            </>
+        )
+    }
+
+];
+
 
 
 
@@ -164,28 +279,19 @@ const fullStackDeveloper = {
                             <div className="space-y-4 mt-8">
                                 <h2 className="text-2xl font-semibold text-indigo-400">Experience</h2>
 
-                                {/* Apna School App */}
-                                <div className="space-y-2">
-                                    <h3 className="text-lg font-semibold text-gray-100">Full Stack Developer</h3>
-                                    <p className="text-sm sm:text-base text-gray-400">
-                                        <span className="font-medium">Apna School App</span> · Jhotwara, Jaipur, Rajasthan, India · <span className="italic">Oct 2024 - Present</span>
-                                    </p>
-                                    <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-                                        Working on an <span className="text-indigo-300 font-medium">education management system</span> using <span className="text-indigo-300 font-medium">Next.js, NestJS, Zustand, MongoDB,</span> and <span className="text-indigo-300 font-medium">TypeScript</span>. My role includes developing features for communication between teachers, students, and parents, and creating modules for data management and performance analytics.
-                                    </p>
-                                </div>
-
-                                {/* Ubuy Project */}
-                                <div className="space-y-2">
-                                    <h3 className="text-lg font-semibold text-gray-100">Frontend Developer</h3>
-                                    <p className="text-sm sm:text-base text-gray-400">
-                                        <span className="font-medium">Ubuy</span> · Mansarovar, Jaipur, Rajasthan, India · <span className="italic">Feb 2024 - Oct 2024</span>
-                                    </p>
-                                    <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-                                        Leading frontend development for an <span className="text-indigo-300 font-medium">e-commerce platform</span> with a focus on enhancing <span className="text-indigo-300 font-medium">user experience</span> and implementing features like <span className="text-indigo-300 font-medium">product filtering</span> and <span className="text-indigo-300 font-medium">API integrations</span>. Using <span className="text-indigo-300 font-medium">Next.js, TypeScript, Redux, Tailwind CSS,</span> and <span className="text-indigo-300 font-medium">SQL</span> to create scalable solutions.
-                                    </p>
-                                </div>
+                                {experienceData?.map((experience, index) => (
+                                    <div key={index}>
+                                        <h3 className="text-lg font-semibold text-gray-100">{experience.position}</h3>
+                                        <p className="text-sm  text-gray-400">
+                                            <span className="font-medium">{experience.company}</span> · {experience.location} · <span className="italic">{experience.dates}</span>
+                                        </p>
+                                        <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-justify">
+                                            {experience.description}
+                                        </p>
+                                    </div>
+                                ))}
                             </div>
+
 
                             {/* Skills Section */}
                             <div className="mt-8 space-y-4">
@@ -195,9 +301,9 @@ const fullStackDeveloper = {
                                         <li key={category} className="space-y-1">
                                             <strong className="text-base text-gray-100">{category}:</strong>
                                             <div className="flex flex-wrap gap-3 pt-1">
-                                                {skillsList.map((skill) => (
+                                                {skillsList.map((skill:any) => (
                                                     <span key={skill.name} className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-md shadow-sm">
-                                                        {skill.icon && skill.icon}
+                                                        {skill.icon && skill?.icon}
                                                         <span className="text-sm sm:text-base text-indigo-400">{skill.name}</span>
                                                     </span>
                                                 ))}
