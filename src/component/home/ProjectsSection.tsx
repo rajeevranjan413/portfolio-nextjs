@@ -35,6 +35,7 @@ const projectsData = [
         link: "#",
         githubLink: "#",
     },
+    
     // {
     //     title: "DNS Resolver",
     //     technologies: "UDP Protocols, JavaScript",

@@ -1,161 +1,62 @@
 import React from "react";
 
 
-const skills = {
-    "Programming Languages": [
-        {
-            name: "C",
-            icon: null,
-        },
-        {
-            name: "C++",
-            icon: null,
-        },
-        {
-            name: "Node.js",
-            icon: null,
-        },
-        {
-            name: "JavaScript",
-            icon: null,
-        },
-        {
-            name: "TypeScript",
-            icon: null,
-        }
+interface Skill {
+    name: string;
+    icon: React.ReactNode | null;
+}
 
+interface Skills {
+    [category: string]: Skill[];
+}
+
+// Skills data with proper type annotations
+const skills: Skills = {
+    "Programming Languages": [
+        { name: "C", icon: null },
+        { name: "C++", icon: null },
+        { name: "Node.js", icon: null },
+        { name: "JavaScript", icon: null },
+        { name: "TypeScript", icon: null },
     ],
     "Frontend Technologies": [
-        {
-            name:"HTML",
-            icon: null,
-        },
-        {
-            name: "CSS",
-            icon: null,
-        },
-        {
-            name: "JavaScript",
-            icon: null,
-        },
-        {
-            name: "ReactJs",
-            icon: null,
-        },
-        {
-            name: "React Native",
-            icon: null,
-        },
-        {
-            name: "NextJs",
-            icon: null,
-        },
-        {
-            name: "Redux",
-            icon: null,
-        },
-        {
-            name: "Zustand",
-            icon: null,
-        },
-        {
-            name: "Tailwind CSS",
-            icon: null,
-        },
-        {
-            name: "Chakra UI",
-            icon: null,
-        },
-        {
-            name: "Webpack",
-            icon: null,
-        }, 
+        { name: "HTML", icon: null },
+        { name: "CSS", icon: null },
+        { name: "JavaScript", icon: null },
+        { name: "ReactJs", icon: null },
+        { name: "React Native", icon: null },
+        { name: "NextJs", icon: null },
+        { name: "Redux", icon: null },
+        { name: "Zustand", icon: null },
+        { name: "Tailwind CSS", icon: null },
+        { name: "Chakra UI", icon: null },
+        { name: "Webpack", icon: null },
     ],
     "Backend Technologies": [
-        {
-            name:"ExpressJs"
-        },
-        {
-            name: "NestJS",
-            icon: null,
-        },
-        {
-            name: "REST APIs",
-            icon: null,
-        },
-        {
-            name: "Mongoose",
-            icon: null,
-        },
-        {
-            name: "Sequelize",
-            icon: null,
-        },
-        {
-            name: "MongoDB",
-            icon: null,
-        },
-        {
-            name: "MySQL",
-            icon: null,
-        },
-        {
-            name: "Redis",
-            icon: null,
-        }, 
+        { name: "ExpressJs", icon: null },
+        { name: "NestJS", icon: null },
+        { name: "REST APIs", icon: null },
+        { name: "Mongoose", icon: null },
+        { name: "Sequelize", icon: null },
+        { name: "MongoDB", icon: null },
+        { name: "MySQL", icon: null },
+        { name: "Redis", icon: null },
     ],
     "DevOps and Tools": [
-        {
-            name: "Linux",
-            icon: null,
-        },
-        {
-            name: "Git",
-            icon: null,
-        },
-        {
-            name: "GitHub",
-            icon: null,
-        },
-        {
-            name: "GitLab",
-            icon: null,
-        },
-        {
-            name: "GitHub Actions",
-            icon: null,
-        },
-        {
-            name: "Docker",
-            icon: null,
-        },
-        {
-            name: "AWS",
-            icon: null,
-        },
-        {
-            name: "Jest",
-            icon: null,
-        },
-        {
-            name: "Postman",
-            icon: null,
-        },
-        {
-            name: "Nginx",
-            icon: null,
-        },
-        {
-            name: "Jira",
-            icon: null,
-        },
-        {
-            name: "Turborepo",
-            icon: null,
-        },
+        { name: "Linux", icon: null },
+        { name: "Git", icon: null },
+        { name: "GitHub", icon: null },
+        { name: "GitLab", icon: null },
+        { name: "GitHub Actions", icon: null },
+        { name: "Docker", icon: null },
+        { name: "AWS", icon: null },
+        { name: "Jest", icon: null },
+        { name: "Postman", icon: null },
+        { name: "Nginx", icon: null },
+        { name: "Jira", icon: null },
+        { name: "Turborepo", icon: null },
     ],
 };
-
 
 const experienceData = [
     {
@@ -301,7 +202,7 @@ const fullStackDeveloper = {
                                         <li key={category} className="space-y-1">
                                             <strong className="text-base text-gray-100">{category}:</strong>
                                             <div className="flex flex-wrap gap-3 pt-1">
-                                                {skillsList.map((skill:any) => (
+                                                {skillsList.map((skill) => (
                                                     <span key={skill.name} className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-md shadow-sm">
                                                         {skill.icon && skill?.icon}
                                                         <span className="text-sm sm:text-base text-indigo-400">{skill.name}</span>
