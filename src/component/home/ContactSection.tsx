@@ -117,7 +117,7 @@ export const ContactSection = () => {
                 href="https://linkedin.com/in/rajeev-ranjan-dev"
                 className="text-blue-400 hover:underline"
               >
-                linkedin.com/in/rajeev-ranjan-dev
+                linkedin.com/rajeev-ranjan
               </a>
             </p>
           </div>
