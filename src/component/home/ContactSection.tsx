@@ -43,7 +43,7 @@ export const ContactSection = () => {
                 : "text-gray-300 hover:text-white"
             }`}
           >
-            Contact Form
+            Contact Me
           </div>
           <div
             onClick={() => setActiveTab("details")}
