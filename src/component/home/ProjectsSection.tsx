@@ -44,14 +44,6 @@ const projectsData = [
     //     link: "#",
     //     githubLink: "#",
     // },
-    // {
-    //     title: "Portfolio Website",
-    //     technologies: "HTML, CSS, JS, EmailJs",
-    //     description: "Created a portfolio site with HTML, CSS, and JS, featuring a dark/light mode toggle and email integration. The site is optimized for static hosting and user-friendly navigation.",
-    //     image: "https://via.placeholder.com/300x200",
-    //     link: "#",
-    //     githubLink: "#",
-    // },
 ];
 
 
