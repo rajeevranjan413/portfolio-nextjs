@@ -1,74 +1,115 @@
+import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
 import { FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa";
+import { HiArrowDown } from "react-icons/hi";
+
+// WebGL scene is client-only; load it after hydration
+const HeroScene = dynamic(() => import("../three/HeroScene"), { ssr: false });
+
+const container = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.15, delayChildren: 0.2 } },
+};
+
+const item = {
+    hidden: { opacity: 0, y: 40, rotateX: -60 },
+    show: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } },
+};
+
+const socials = [
+    { href: "https://www.linkedin.com/in/rajeev-ranjan-dev", icon: <FaLinkedin />, label: "LinkedIn" },
+    { href: "https://github.com/rajeevranjan413", icon: <FaGithub />, label: "GitHub" },
+    { href: "https://twitter.com", icon: <FaTwitter />, label: "Twitter" },
+];
 
 export const HeroSection = () => {
     return (
-        <section className="bg-gray-900 text-white py-28">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h1 className="text-5xl font-bold mb-6 md:text-6xl">
-                    {` Hi, I'm Rajeev Ranjan`}
-                </h1>
+        <section className="relative flex min-h-screen items-center overflow-hidden text-white">
+            {/* 3D background */}
+            <div className="absolute inset-0">
+                <HeroScene />
+            </div>
+            <div className="perspective-floor" aria-hidden />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#05060f] to-transparent" />
+
+            <motion.div
+                variants={container}
+                initial="hidden"
+                animate="show"
+                style={{ perspective: 800 }}
+                className="pointer-events-none relative z-10 mx-auto w-full max-w-7xl px-4 pb-16 pt-24 text-center sm:px-6 lg:px-8 lg:text-left"
+            >
+                <motion.p variants={item} className="mb-4 font-mono text-sm uppercase tracking-[0.35em] text-indigo-300">
+                    <span className="mr-2 inline-block h-2 w-2 animate-pulse rounded-full bg-emerald-400 align-middle" />
+                    Available for work
+                </motion.p>
+
+                <motion.h1 variants={item} className="mb-6 text-5xl font-bold leading-tight md:text-7xl">
+                    Hi, I&apos;m <br className="hidden lg:block" />
+                    <span className="text-gradient">Rajeev Ranjan</span>
+                </motion.h1>
 
                 {/* Typing animation */}
-                <div className="hidden md:block">
-                <p className="typing-animation text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-10 max-w-full">
-                    FullStack Developer with experience in React, Next.js, Node.js, and
-                    more.
-                </p>
-                </div>
-                <div className="md:hidden">
-                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-10 max-w-full">
-                    FullStack Developer with experience in React, Next.js, Node.js, and
-                    more.
-                </p>
-                </div>
-
-                <div></div>
+                <motion.div variants={item} className="mb-10 hidden md:block">
+                    <p
+                        className="typing-animation max-w-full text-lg text-gray-300 lg:text-xl"
+                        style={{ "--chars": 53 } as React.CSSProperties}
+                    >
+                        FullStack Developer · React, Next.js, Node.js & more.
+                    </p>
+                </motion.div>
+                <motion.div variants={item} className="md:hidden">
+                    <p className="mb-10 max-w-full text-base text-gray-300 sm:text-lg">
+                        FullStack Developer with experience in React, Next.js, Node.js, and
+                        more.
+                    </p>
+                </motion.div>
 
                 {/* Social Icons */}
-                <div className="flex justify-center space-x-6 mb-8">
-                    <a
-                        href="https://www.linkedin.com/in/rajeev-ranjan-dev"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-2xl hover:text-indigo-500 transition duration-300"
-                    >
-                        <FaLinkedin />
-                    </a>
-                    <a
-                        href="https://github.com/rajeevranjan413"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-2xl hover:text-indigo-500 transition duration-300"
-                    >
-                        <FaGithub />
-                    </a>
-                    <a
-                        href="https://twitter.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-2xl hover:text-indigo-500 transition duration-300"
-                    >
-                        <FaTwitter />
-                    </a>
-                </div>
+                <motion.div variants={item} className="pointer-events-auto mb-10 flex justify-center gap-4 lg:justify-start">
+                    {socials.map((s) => (
+                        <motion.a
+                            key={s.label}
+                            href={s.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={s.label}
+                            whileHover={{ y: -6, rotateY: 180 }}
+                            transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                            className="glass flex h-12 w-12 items-center justify-center rounded-xl text-xl text-gray-200 hover:text-indigo-300"
+                        >
+                            {s.icon}
+                        </motion.a>
+                    ))}
+                </motion.div>
 
                 {/* Buttons */}
-                <div className="space-y-4 sm:space-y-0 sm:space-x-4 flex flex-col sm:flex-row justify-center">
+                <motion.div variants={item} className="pointer-events-auto flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
                     <a
                         href="#projects"
-                        className="bg-indigo-500 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-indigo-600 transition duration-300"
+                        className="btn-glow rounded-xl px-8 py-4 text-lg font-semibold text-white"
                     >
                         See My Work
                     </a>
                     <a
                         href="/assets/resume.pdf"
                         target="_blank"
-                        className="bg-transparent border border-indigo-500 text-indigo-500 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-indigo-500 hover:text-white transition duration-300"
+                        className="glass rounded-xl px-8 py-4 text-lg font-semibold text-indigo-200 transition duration-300 hover:-translate-y-0.5 hover:border-indigo-400/60 hover:text-white"
                     >
                         Download Resume
                     </a>
-                </div>
-            </div>
+                </motion.div>
+            </motion.div>
+
+            <motion.a
+                href="#about"
+                aria-label="Scroll to About"
+                className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 text-2xl text-indigo-300 sm:block"
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 1.8, repeat: Infinity }}
+            >
+                <HiArrowDown />
+            </motion.a>
         </section>
     );
 };

@@ -1,4 +1,5 @@
 "use client";
+import { MotionConfig } from "framer-motion";
 import { ContactSection } from "./ContactSection";
 
 import Navbar from "../../Layouts/Navbar";
@@ -9,24 +10,27 @@ import Footer from "@/Layouts/Footer";
 
 export default function HomePage() {
   return (
-    <div className="bg-gray-100 text-gray-900">
-      {/* Navigation */}
-      <Navbar />
+    // Respect the OS "reduce motion" setting for all framer-motion animations
+    <MotionConfig reducedMotion="user">
+      <div className="text-gray-100">
+        {/* Navigation */}
+        <Navbar />
 
-      {/* Hero Section */}
-      <HeroSection />
+        {/* Hero Section */}
+        <HeroSection />
 
-      {/* About Section */}
-      <AboutSection />
+        {/* About Section */}
+        <AboutSection />
 
-      {/* Projects Section */}
-      <ProjectsSection />
+        {/* Projects Section */}
+        <ProjectsSection />
 
-      {/* Contact Section */}
-      <ContactSection />
+        {/* Contact Section */}
+        <ContactSection />
 
-      {/* Footer Section */}
-      <Footer />
-    </div>
+        {/* Footer Section */}
+        <Footer />
+      </div>
+    </MotionConfig>
   );
 }

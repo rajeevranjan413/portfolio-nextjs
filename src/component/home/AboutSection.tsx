@@ -1,4 +1,9 @@
 import React from "react";
+import { motion } from "framer-motion";
+import Reveal from "../ui/Reveal";
+import TiltCard from "../ui/TiltCard";
+import SectionHeading from "../ui/SectionHeading";
+import SkillSphere from "../ui/SkillSphere";
 
 
 interface Skill {
@@ -95,38 +100,11 @@ const experienceData = [
 
 ];
 
+const allSkills = Array.from(
+    new Set(Object.values(skills).flatMap((list) => list.map((skill) => skill.name)))
+);
 
-
-
-const AboutSection = () => {
-    return (
-        <section id="about" className="py-16 bg-gray-900 text-white">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-4xl font-bold mb-6 text-center text-indigo-400 animate-pulse">
-                    About Me
-                </h2>
-
-                {/* Code block container */}
-                <div className="relative">
-                    {/* Background shadow effect */}
-                    <div className="absolute inset-0 bg-gray-800 rounded-lg shadow-lg transition-opacity duration-300 hover:opacity-60 -z-10"></div>
-                    <div className="bg-black p-6 md:p-12 rounded-lg shadow-lg relative overflow-hidden">
-                        {/* Terminal-like header */}
-                        <div className="flex items-center space-x-2 absolute top-0 left-0 p-2">
-                            <span className="w-3 h-3 bg-red-500 rounded-full"></span>
-                            <span className="w-3 h-3 bg-yellow-500 rounded-full"></span>
-                            <span className="w-3 h-3 bg-green-500 rounded-full"></span>
-                        </div>
-
-                        {/* Code content */}
-                        <div className="overflow-x-auto relative">
-                            {/* Shadow background effect with animation */}
-                            <div className="absolute md:p-8 inset-0 text-indigo-400 rounded-lg shadow-lg shadow-animation"></div>
-
-                            <pre className="relative bg-gray-900 rounded-2xl md:p-4 shadow-lg">
-                                <code className="block text-gray-300 font-mono text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg leading-relaxed whitespace-pre-line p-3 md:p-6">
-                                    {`
-const fullStackDeveloper = {
+const codeSnippet = `const fullStackDeveloper = {
   skills: {
     programmingLanguages: [
       'C', 'JavaScript', 'C++', 'TypeScript', 'Node.js'
@@ -145,79 +123,140 @@ const fullStackDeveloper = {
     { company: 'Ubuy India', role: 'Next.js Developer', date: 'Feb’24 - Oct’24' },
     { company: 'Apna School ERP', role: 'FullStack Developer', date: 'Oct’24 - Current' }
   ]
-};`}
-                                </code>
+};`;
 
-                            </pre>
-                        </div>
+const AboutSection = () => {
+    return (
+        <section id="about" className="relative py-24 text-white">
+            <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+                <SectionHeading eyebrow="// who am i" title="About Me" />
 
-                        {/* text content */}
-                        <div className="text-gray-300 mt-6 space-y-6 p-6 sm:p-8 lg:p-10 max-w-screen-lg bg-gray-800 rounded-lg shadow-lg mx-auto">
-                            {/* Introduction */}
-                            <div className="text-xs sm:text-sm md:text-base lg:text-lg space-y-4">
-                                <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-                                    Hi, I&apos;m <span className="text-indigo-300 font-medium">Rajeev Ranjan</span>, an Indian software engineer and freelance developer passionate about building innovative web applications. Currently based in <span className="text-indigo-300 font-medium">Jaipur</span>, I&apos;m excited to share my journey with you.
-                                </p>
-                                <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-                                    With a <span className="text-indigo-300 font-medium">Bachelor&apos;s degree in Computer Science</span> from <span className="text-indigo-300 font-medium">Poornima Institute of Engineering and Technology</span>, I&apos;ve developed a strong foundation in full-stack development. My experience includes working with technologies like <span className="text-indigo-300 font-medium">Nest.js, Next.js, React,</span> and <span className="text-indigo-300 font-medium">Express.js</span>. I&apos;ve collaborated on projects like the <span className="text-indigo-300 font-medium">e-commerce</span> platform for Ubuy.
-                                </p>
-                                <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-                                    My freelance journey began while honing my skills, enabling me to work with diverse clients and projects. I help businesses create minimum viable products (MVPs) and provide tailored solutions. I&apos;m also part of the <span className="text-indigo-300 font-medium">Dev Learn community</span>, where I conduct workshops on computer science fundamentals.
-                                </p>
-                                <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-                                    I thrive on problem-solving and enjoy tackling challenges, whether optimizing performance or designing user-friendly interfaces. I host workshops to share my knowledge and skills.
-                                </p>
-                                <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-                                    I enjoy solving algorithmic challenges and contributing to open-source projects. I&apos;m always eager to learn and explore new technologies.
-                                </p>
-                                <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-                                    Thank you for taking the time to learn more about me!
-                                </p>
-                            </div>
-
-
-                            {/* Experience Section */}
-                            <div className="space-y-4 mt-8">
-                                <h2 className="text-2xl font-semibold text-indigo-400">Experience</h2>
-
-                                {experienceData?.map((experience, index) => (
-                                    <div key={index}>
-                                        <h3 className="text-lg font-semibold text-gray-100">{experience.position}</h3>
-                                        <p className="text-sm  text-gray-400">
-                                            <span className="font-medium">{experience.company}</span> · {experience.location} · <span className="italic">{experience.dates}</span>
-                                        </p>
-                                        <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-justify">
-                                            {experience.description}
-                                        </p>
+                {/* Terminal + intro */}
+                <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+                    <Reveal from="left">
+                        <TiltCard intensity={8} className="rounded-2xl">
+                            <div className="gradient-border shadow-animation">
+                                <div className="overflow-hidden rounded-[1.2rem] bg-[#0a0b1a]">
+                                    {/* Terminal-like header */}
+                                    <div className="flex items-center gap-2 border-b border-white/5 px-4 py-3">
+                                        <span className="h-3 w-3 rounded-full bg-red-500"></span>
+                                        <span className="h-3 w-3 rounded-full bg-yellow-500"></span>
+                                        <span className="h-3 w-3 rounded-full bg-green-500"></span>
+                                        <span className="ml-3 font-mono text-xs text-gray-500">rajeev.ts</span>
                                     </div>
-                                ))}
+                                    <pre
+                                        className="overflow-x-auto p-4 md:p-6"
+                                        style={{ transform: "translateZ(30px)" }}
+                                    >
+                                        <code className="block whitespace-pre font-mono text-[10px] leading-relaxed text-gray-300 sm:text-xs md:text-sm lg:text-xs xl:text-[13px]">
+                                            {codeSnippet}
+                                        </code>
+                                    </pre>
+                                </div>
                             </div>
+                        </TiltCard>
+                    </Reveal>
 
-
-                            {/* Skills Section */}
-                            <div className="mt-8 space-y-4">
-                                <h2 className="text-2xl font-semibold text-indigo-400">Skills</h2>
-                                <ul className="list-disc pl-4 space-y-3">
-                                    {Object.entries(skills).map(([category, skillsList]) => (
-                                        <li key={category} className="space-y-1">
-                                            <strong className="text-base text-gray-100">{category}:</strong>
-                                            <div className="flex flex-wrap gap-3 pt-1">
-                                                {skillsList.map((skill) => (
-                                                    <span key={skill.name} className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-md shadow-sm">
-                                                        {skill.icon && skill?.icon}
-                                                        <span className="text-sm sm:text-base text-indigo-400">{skill.name}</span>
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
+                    {/* Introduction */}
+                    <Reveal from="right" delay={0.1}>
+                        <div className="glass space-y-4 rounded-2xl p-6 text-gray-300 sm:p-8">
+                            <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
+                                Hi, I&apos;m <span className="text-indigo-300 font-medium">Rajeev Ranjan</span>, an Indian software engineer and freelance developer passionate about building innovative web applications. Currently based in <span className="text-indigo-300 font-medium">Jaipur</span>, I&apos;m excited to share my journey with you.
+                            </p>
+                            <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
+                                With a <span className="text-indigo-300 font-medium">Bachelor&apos;s degree in Computer Science</span> from <span className="text-indigo-300 font-medium">Poornima Institute of Engineering and Technology</span>, I&apos;ve developed a strong foundation in full-stack development. My experience includes working with technologies like <span className="text-indigo-300 font-medium">Nest.js, Next.js, React,</span> and <span className="text-indigo-300 font-medium">Express.js</span>. I&apos;ve collaborated on projects like the <span className="text-indigo-300 font-medium">e-commerce</span> platform for Ubuy.
+                            </p>
+                            <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
+                                My freelance journey began while honing my skills, enabling me to work with diverse clients and projects. I help businesses create minimum viable products (MVPs) and provide tailored solutions. I&apos;m also part of the <span className="text-indigo-300 font-medium">Dev Learn community</span>, where I conduct workshops on computer science fundamentals.
+                            </p>
+                            <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
+                                I thrive on problem-solving and enjoy tackling challenges, whether optimizing performance or designing user-friendly interfaces. I host workshops to share my knowledge and skills.
+                            </p>
+                            <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
+                                I enjoy solving algorithmic challenges and contributing to open-source projects. I&apos;m always eager to learn and explore new technologies.
+                            </p>
+                            <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
+                                Thank you for taking the time to learn more about me!
+                            </p>
                         </div>
+                    </Reveal>
+                </div>
 
+                {/* Experience timeline */}
+                <div className="mt-24">
+                    <Reveal>
+                        <h3 className="mb-10 text-center text-3xl font-semibold text-indigo-300">Experience</h3>
+                    </Reveal>
+                    <div className="relative">
+                        <motion.div
+                            className="absolute left-4 top-0 h-full w-px origin-top bg-gradient-to-b from-indigo-500 via-purple-500 to-cyan-400 md:left-1/2"
+                            initial={{ scaleY: 0 }}
+                            whileInView={{ scaleY: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1.5, ease: "easeInOut" }}
+                        />
+                        <div className="space-y-12">
+                            {experienceData?.map((experience, index) => {
+                                const left = index % 2 === 0;
+                                return (
+                                    <div
+                                        key={index}
+                                        className={`relative pl-12 md:w-1/2 md:pl-0 ${left ? "md:pr-12" : "md:ml-auto md:pl-12"}`}
+                                    >
+                                        <span
+                                            className={`absolute left-[10px] top-6 h-3.5 w-3.5 rounded-full bg-indigo-400 shadow-[0_0_20px_4px_rgba(129,140,248,0.7)] ${left ? "md:left-auto md:-right-[7px]" : "md:-left-[7px]"}`}
+                                        />
+                                        <Reveal from={left ? "left" : "right"}>
+                                            <TiltCard intensity={6} className="rounded-2xl">
+                                                <div className="glass rounded-2xl p-6">
+                                                    <p className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-300">
+                                                        {experience.dates}
+                                                    </p>
+                                                    <h4 className="text-lg font-semibold text-gray-100">{experience.position}</h4>
+                                                    <p className="mb-3 text-sm text-gray-400">
+                                                        <span className="font-medium text-indigo-200">{experience.company}</span> · {experience.location}
+                                                    </p>
+                                                    <p className="text-sm leading-relaxed text-gray-300 sm:text-base">
+                                                        {experience.description}
+                                                    </p>
+                                                </div>
+                                            </TiltCard>
+                                        </Reveal>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </div>
 
-
-
+                {/* Skills */}
+                <div className="mt-24">
+                    <Reveal>
+                        <h3 className="mb-10 text-center text-3xl font-semibold text-indigo-300">Skills</h3>
+                    </Reveal>
+                    <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+                        <Reveal from="left">
+                            <SkillSphere skills={allSkills} />
+                        </Reveal>
+                        <div className="space-y-6">
+                            {Object.entries(skills).map(([category, skillsList], i) => (
+                                <Reveal key={category} from="right" delay={i * 0.1}>
+                                    <strong className="text-base text-gray-100">{category}</strong>
+                                    <div className="flex flex-wrap gap-2 pt-2">
+                                        {skillsList.map((skill) => (
+                                            <motion.span
+                                                key={skill.name}
+                                                whileHover={{ y: -4, scale: 1.08, rotateX: 15 }}
+                                                className="glass flex cursor-default items-center gap-2 rounded-lg px-3 py-1 hover:border-indigo-400/60"
+                                            >
+                                                {skill.icon && skill?.icon}
+                                                <span className="text-sm text-indigo-300">{skill.name}</span>
+                                            </motion.span>
+                                        ))}
+                                    </div>
+                                </Reveal>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

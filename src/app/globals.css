@@ -2,80 +2,240 @@
 @tailwind components;
 @tailwind utilities;
 
-/* styles.css or a global styles file */
+:root {
+  --bg: #05060f;
+  --accent: #818cf8;
+  --accent-2: #c084fc;
+  --accent-3: #22d3ee;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+}
+
+section[id] {
+  scroll-margin-top: 4rem;
+}
+
+body {
+  background: var(--bg);
+  color: #e5e7eb;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(129, 140, 248, 0.4);
+  color: #fff;
+}
+
+/* Scrollbars */
 ::-webkit-scrollbar {
+  width: 10px;
   height: 8px;
-  /* Height of the horizontal scrollbar */
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-  /* Background of the track */
-  border-radius: 10px;
-  /* Rounded corners for the track */
+  background: rgba(255, 255, 255, 0.04);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.6);
-  /* Color of the scrollbar thumb */
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
   border-radius: 10px;
-  /* Rounded corners for the thumb */
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.9);
-  /* Color on hover */
+/* ---------- Ambient page background ---------- */
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  background: radial-gradient(ellipse at top, #0b0d24 0%, var(--bg) 60%);
+}
+
+.aurora span {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.35;
+  animation: drift 22s ease-in-out infinite alternate;
+}
+
+.aurora span:nth-child(1) {
+  width: 520px;
+  height: 520px;
+  background: #4f46e5;
+  top: -10%;
+  left: -10%;
+}
+
+.aurora span:nth-child(2) {
+  width: 420px;
+  height: 420px;
+  background: #9333ea;
+  top: 40%;
+  right: -12%;
+  animation-delay: -6s;
+}
+
+.aurora span:nth-child(3) {
+  width: 380px;
+  height: 380px;
+  background: #0891b2;
+  bottom: -15%;
+  left: 25%;
+  animation-delay: -12s;
+  opacity: 0.22;
+}
+
+@keyframes drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(80px, 60px, 0) scale(1.15);
+  }
+
+  100% {
+    transform: translate3d(-60px, 120px, 0) scale(0.95);
+  }
+}
+
+/* Subtle dotted grid over the whole page */
+.grid-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+
+/* Synthwave-style 3D perspective floor under the hero */
+.perspective-floor {
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  bottom: 0;
+  height: 55%;
+  transform: perspective(500px) rotateX(70deg);
+  transform-origin: bottom center;
+  background-image:
+    linear-gradient(rgba(129, 140, 248, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(129, 140, 248, 0.35) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: floor-move 3s linear infinite;
+  mask-image: linear-gradient(to top, black 10%, transparent 90%);
+  pointer-events: none;
+}
+
+@keyframes floor-move {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 0 60px;
+  }
+}
+
+/* ---------- Reusable pieces ---------- */
+.glass {
+  background: rgba(17, 20, 45, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #a5b4fc, #c084fc, #67e8f9, #a5b4fc);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-pan 8s linear infinite;
+}
+
+@keyframes gradient-pan {
+  to {
+    background-position: 300% 0;
+  }
+}
+
+/* Animated gradient border (wrap content in .gradient-border > .inner) */
+.gradient-border {
+  position: relative;
+  border-radius: 1.25rem;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(129, 140, 248, 0.6), rgba(192, 132, 252, 0.15), rgba(34, 211, 238, 0.6));
+}
+
+.btn-glow {
+  position: relative;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  box-shadow: 0 10px 30px -10px rgba(129, 140, 248, 0.8);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-glow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px -12px rgba(168, 85, 247, 0.9);
 }
 
 .typing-animation {
   display: inline-block;
   overflow: hidden;
-  /* Hide the text overflow */
   white-space: nowrap;
-  /* Prevent the text from wrapping */
-  border-right: 0.15em solid;
-  /* Cursor effect */
-  animation: typing 6s steps(40, end), blink-caret 1s step-end infinite;
-  /* Increased steps for smoothness */
-  font-family: monospace;
-  /* Optional: for precise alignment, monospace fonts work better */
+  border-right: 0.15em solid var(--accent);
+  width: calc(var(--chars, 40) * 1ch);
+  animation: typing 4s steps(60, end), blink-caret 1s step-end infinite;
+  font-family: var(--font-mono), monospace;
 }
 
-/* Typing animation */
 @keyframes typing {
   from {
     width: 0;
   }
 
   to {
-    width: 23ch;
-    /* Width defined in characters, based on the text length */
+    width: calc(var(--chars, 40) * 1ch);
   }
 }
 
-/* Blinking caret animation */
 @keyframes blink-caret {
   50% {
     border-color: transparent;
-    /* Hide cursor */
   }
 }
 
 @keyframes shadow-pulse {
   0% {
-    box-shadow: 0 0 40px rgba(7, 7, 7, 0.2), 0 0 20px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(99, 102, 241, 0.15), 0 0 20px rgba(192, 132, 252, 0.08);
   }
 
   50% {
-    box-shadow: 0 0 40px rgba(104, 103, 103, 0.4), 0 0 40px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 60px rgba(99, 102, 241, 0.35), 0 0 40px rgba(192, 132, 252, 0.2);
   }
 
   100% {
-    box-shadow: 0 0 40px rgba(225, 225, 225, 0.2), 0 0 20px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(99, 102, 241, 0.15), 0 0 20px rgba(192, 132, 252, 0.08);
   }
 }
 
-/* Apply the animation to the shadow background */
 .shadow-animation {
-  animation: shadow-pulse 2s infinite;
+  animation: shadow-pulse 3s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
 }
