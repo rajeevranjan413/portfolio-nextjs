@@ -15,114 +15,109 @@ interface Skills {
     [category: string]: Skill[];
 }
 
+const toSkills = (names: string[]): Skill[] => names.map((name) => ({ name, icon: null }));
+
 // Skills data with proper type annotations
 const skills: Skills = {
-    "Programming Languages": [
-        { name: "C", icon: null },
-        { name: "C++", icon: null },
-        { name: "Node.js", icon: null },
-        { name: "JavaScript", icon: null },
-        { name: "TypeScript", icon: null },
-    ],
-    "Frontend Technologies": [
-        { name: "HTML", icon: null },
-        { name: "CSS", icon: null },
-        { name: "JavaScript", icon: null },
-        { name: "ReactJs", icon: null },
-        { name: "React Native", icon: null },
-        { name: "NextJs", icon: null },
-        { name: "Redux", icon: null },
-        { name: "Zustand", icon: null },
-        { name: "Tailwind CSS", icon: null },
-        { name: "Chakra UI", icon: null },
-        { name: "Webpack", icon: null },
-    ],
-    "Backend Technologies": [
-        { name: "ExpressJs", icon: null },
-        { name: "NestJS", icon: null },
-        { name: "REST APIs", icon: null },
-        { name: "Mongoose", icon: null },
-        { name: "Sequelize", icon: null },
-        { name: "MongoDB", icon: null },
-        { name: "MySQL", icon: null },
-        { name: "Redis", icon: null },
-    ],
-    "DevOps and Tools": [
-        { name: "Linux", icon: null },
-        { name: "Git", icon: null },
-        { name: "GitHub", icon: null },
-        { name: "GitLab", icon: null },
-        { name: "GitHub Actions", icon: null },
-        { name: "Docker", icon: null },
-        { name: "AWS", icon: null },
-        { name: "Jest", icon: null },
-        { name: "Postman", icon: null },
-        { name: "Nginx", icon: null },
-        { name: "Jira", icon: null },
-        { name: "Turborepo", icon: null },
-    ],
+    "Languages": toSkills(["JavaScript", "TypeScript", "Python", "C++", "C", "SQL", "Liquid"]),
+    "Backend": toSkills(["Node.js", "NestJS", "Express.js", "GraphQL", "REST APIs", "Webhooks"]),
+    "Frontend": toSkills(["React", "Next.js (SSR)", "Remix", "Redux", "Zustand", "Tailwind CSS", "WebGL"]),
+    "Data & Cloud": toSkills(["MongoDB", "MySQL", "Redis", "AWS Lambda", "EC2", "S3", "SQS", "RDS", "CloudWatch", "Serverless", "CI/CD"]),
+    "E-commerce": toSkills(["Shopify Apps & Themes", "Shopify Admin API", "Klaviyo", "Google Analytics", "Google Tag Manager"]),
+    "AI & Agentic": toSkills(["Claude Code", "Doc-first agentic development", "Multi-agent workflows", "LLM-assisted coding"]),
+    "Imaging & Tools": toSkills(["OpenCV", "NumPy", "SciPy", "psd-tools", "Git", "Linux", "Jira", "Turborepo", "Webpack"]),
 };
+
+// Highlighted phrase inside running text
+const Hl = ({ children }: { children: React.ReactNode }) => (
+    <span className="text-indigo-300 font-medium">{children}</span>
+);
 
 const experienceData = [
     {
-        position: (<>FullStack Developer |<span className="text-gray-300 font-normal italic"> Typescript, Nestjs, Nextjs, Zustand, MongoDb</span></>),
+        role: "Junior Software Engineer",
+        stack: "Node.js, Remix, GraphQL, Shopify, AWS",
+        company: "Codeking Technologies Pvt. Ltd.",
+        location: "Jaipur",
+        dates: "Dec 2024 - Present",
+        points: [
+            <>Build public and private <Hl>Shopify apps</Hl> with Node.js, Remix, GraphQL Admin API and order/checkout webhooks.</>,
+            <>Develop custom <Hl>Shopify storefronts and Liquid themes</Hl> with account features, checkout flows and order management.</>,
+            <>Design <Hl>serverless AWS backends</Hl> (Lambda, SQS, RDS, S3, EC2) with the Serverless Framework, CloudWatch and CI/CD.</>,
+            <>Integrate Klaviyo, Google Analytics, Tag Manager and Google Ads into client stores; interview candidates for Node.js roles.</>,
+            <>Build apps with a <Hl>doc-first, agentic approach in Claude Code</Hl>: specs first, then multi-agent workflows to build and review.</>,
+        ],
+    },
+    {
+        role: "Full Stack Developer",
+        stack: "NestJS, MongoDB, Next.js, Zustand, Tailwind",
         company: "Apna School App",
-        location: "Jhotwara, Jaipur, Rajasthan, India",
-        dates: "Oct 2024 - Present",
-        description: (
-            <>
-                Working on an <span className="text-indigo-300 font-medium">education management system</span> using <span className="text-indigo-300 font-medium">Next.js, NestJS, Zustand, MongoDB,</span> and <span className="text-indigo-300 font-medium">TypeScript</span>. My role includes developing features for communication between teachers, students, and parents, and creating modules for data management and performance analytics.
-            </>
-        )
+        location: "Jaipur",
+        dates: "Oct 2024 - Dec 2024",
+        points: [
+            <>Built a cloud-based <Hl>school ERP</Hl> (web and Android) adopted by <Hl>about 15 schools</Hl> in the Delhi and Jaipur region.</>,
+            <>Developed REST APIs in NestJS with MongoDB, and frontends in Next.js, React, Zustand and Tailwind CSS.</>,
+            <>Shipped attendance, staff–student–parent communication and resource management modules.</>,
+        ],
     },
     {
-        position: (<>FullStack Developer |<span className="text-gray-300 font-normal italic"> Typescript, Nextjs, Expressjs, Redux, SQL, Redis</span></>),
-        company: "Ubuy",
-        location: "Mansarovar, Jaipur, Rajasthan, India",
-        dates: "Feb 2024 - Oct 2024",
-        description: (
-            <>
-                Leading frontend development for an <span className="text-indigo-300 font-medium">e-commerce platform</span> with a focus on enhancing <span className="text-indigo-300 font-medium">user experience</span> and implementing features like <span className="text-indigo-300 font-medium">product filtering</span> and <span className="text-indigo-300 font-medium">API integrations</span>. Using <span className="text-indigo-300 font-medium">Next.js, TypeScript, Redux, Tailwind CSS,</span> and <span className="text-indigo-300 font-medium">SQL</span> to create scalable solutions.
-            </>
-        )
+        role: "Software Engineer (Full Stack)",
+        stack: "Next.js, Redux, Express.js, MySQL, Redis",
+        company: "Ubuy India",
+        location: "Jaipur",
+        dates: "Sep 2023 - Oct 2024",
+        points: [
+            <>Built a <Hl>monorepo architecture</Hl> for Ubuy&apos;s cross-border e-commerce web app with Next.js, Redux and Express.js.</>,
+            <>Combined client-side routing with server-side rendering for fast navigation across SSR product pages.</>,
+            <>Restructured Redux state flow, <Hl>cutting page re-renders by 2x</Hl>; built REST APIs on MySQL with Redis caching.</>,
+        ],
     },
     {
-        position:(<>FullStack Intern |<span className="text-gray-300 font-normal italic"> HTML5, CSS, Javascript, Nodejs, Tailwind, Firebase</span></>),
-        company: "Ventureheap Private Limited",
-        location: "Agrasen Nagar, Gopal Pura Mode, Jaipur, Rajasthan",
-        dates: "Feb 2024 - Oct 2024",
-        description: (
-            <>
-                Leading frontend development for an <span className="text-indigo-300 font-medium">e-commerce platform</span> with a focus on enhancing <span className="text-indigo-300 font-medium">user experience</span> and implementing features like <span className="text-indigo-300 font-medium">product filtering</span> and <span className="text-indigo-300 font-medium">API integrations</span>. Using <span className="text-indigo-300 font-medium">Next.js, TypeScript, Redux, Tailwind CSS,</span> and <span className="text-indigo-300 font-medium">SQL</span> to create scalable solutions.
-            </>
-        )
-    }
+        role: "Full Stack Intern",
+        stack: "React, Express.js, MongoDB, WordPress",
+        company: "Ventureheap Pvt. Ltd.",
+        location: "Jaipur",
+        dates: "Feb 2023 - Jul 2023",
+        points: [
+            <>Delivered React frontends, Express.js/MongoDB APIs with JWT auth, and custom WordPress themes and plugins for clients.</>,
+        ],
+    },
+];
 
+const stats = [
+    { value: "3+", label: "Years experience" },
+    { value: "~15", label: "Schools on Apna School ERP" },
+    { value: "6+", label: "Apparel products on my mockup engine" },
+    { value: "100+", label: "LeetCode problems solved" },
+];
+
+const achievements = [
+    <><Hl>Education Mentor, DevLearn</Hl> (part-time, Oct 2024 - Present): mentor CS students in DSA, OOP, DBMS, OS and networking.</>,
+    <>Solved <Hl>100+ LeetCode</Hl> problems and led a 3-member hackathon team.</>,
+    <>Write tech posts for <Hl>1,200+ LinkedIn followers</Hl>.</>,
 ];
 
 const allSkills = Array.from(
     new Set(Object.values(skills).flatMap((list) => list.map((skill) => skill.name)))
-);
+).filter((name) => name.length <= 18);
 
-const codeSnippet = `const fullStackDeveloper = {
-  skills: {
-    programmingLanguages: [
-      'C', 'JavaScript', 'C++', 'TypeScript', 'Node.js'
-    ],
-    webFrameworks: [
-      'React.js', 'REST API', 'Express.js', 'Tailwind CSS', 'Next.js', 'Chakra UI'
-    ],
-    databases: [
-      'MongoDB', 'MySQL', 'Redis'
-    ],
-    toolsAndLibraries: [
-      'Redux', 'Linux', 'Zustand', 'Git', 'Jira', 'Turborepo'
-    ]
+const codeSnippet = `const rajeev = {
+  role: 'Full Stack Software Engineer',
+  location: 'Jaipur, India',
+  stack: {
+    backend:  ['Node.js', 'NestJS', 'Express.js', 'GraphQL'],
+    frontend: ['React', 'Next.js', 'Remix', 'Tailwind CSS'],
+    cloud:    ['AWS Lambda', 'SQS', 'RDS', 'S3', 'Serverless'],
+    commerce: ['Shopify Apps', 'Liquid', 'Admin API'],
+    ai:       ['Claude Code', 'multi-agent workflows'],
   },
   experience: [
-    { company: 'Ubuy India', role: 'Next.js Developer', date: 'Feb’24 - Oct’24' },
-    { company: 'Apna School ERP', role: 'FullStack Developer', date: 'Oct’24 - Current' }
-  ]
+    { company: 'Codeking Technologies', since: 'Dec 2024' },
+    { company: 'Apna School App',       period: 'Oct–Dec 2024' },
+    { company: 'Ubuy India',            period: 'Sep 2023–Oct 2024' },
+    { company: 'Ventureheap',           period: 'Feb–Jul 2023' },
+  ],
+  education: 'B.Tech CSE · PIET · CGPA 9.0',
 };`;
 
 const AboutSection = () => {
@@ -160,26 +155,42 @@ const AboutSection = () => {
                     {/* Introduction */}
                     <Reveal from="right" delay={0.1}>
                         <div className="glass space-y-4 rounded-2xl p-6 text-gray-300 sm:p-8">
-                            <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-                                Hi, I&apos;m <span className="text-indigo-300 font-medium">Rajeev Ranjan</span>, an Indian software engineer and freelance developer passionate about building innovative web applications. Currently based in <span className="text-indigo-300 font-medium">Jaipur</span>, I&apos;m excited to share my journey with you.
+                            <p className="text-lg font-medium leading-snug text-white sm:text-xl">
+                                I&apos;m a full stack engineer who turns business requirements into reliable, production-ready products.
                             </p>
-                            <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-                                With a <span className="text-indigo-300 font-medium">Bachelor&apos;s degree in Computer Science</span> from <span className="text-indigo-300 font-medium">Poornima Institute of Engineering and Technology</span>, I&apos;ve developed a strong foundation in full-stack development. My experience includes working with technologies like <span className="text-indigo-300 font-medium">Nest.js, Next.js, React,</span> and <span className="text-indigo-300 font-medium">Express.js</span>. I&apos;ve collaborated on projects like the <span className="text-indigo-300 font-medium">e-commerce</span> platform for Ubuy.
+                            <p className="text-sm leading-relaxed sm:text-base">
+                                Over the past <Hl>3+ years</Hl> I&apos;ve shipped <Hl>e-commerce platforms</Hl>, <Hl>Shopify apps</Hl> and <Hl>SaaS products</Hl> end to end: Next.js and React frontends, Node.js and NestJS APIs, and serverless AWS backends.
                             </p>
-                            <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-                                My freelance journey began while honing my skills, enabling me to work with diverse clients and projects. I help businesses create minimum viable products (MVPs) and provide tailored solutions. I&apos;m also part of the <span className="text-indigo-300 font-medium">Dev Learn community</span>, where I conduct workshops on computer science fundamentals.
+                            <p className="text-sm leading-relaxed sm:text-base">
+                                At <Hl>Codeking Technologies</Hl> I build Shopify apps, custom storefronts and Liquid themes for client stores. Before that, I built the monorepo behind <Hl>Ubuy</Hl>&apos;s cross-border e-commerce app, cutting page re-renders by 2x, and a school ERP adopted by about <Hl>15 schools</Hl>.
                             </p>
-                            <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-                                I thrive on problem-solving and enjoy tackling challenges, whether optimizing performance or designing user-friendly interfaces. I host workshops to share my knowledge and skills.
+                            <p className="text-sm leading-relaxed sm:text-base">
+                                I work <Hl>doc-first</Hl>: clear specs, then agentic workflows in Claude Code to build and review.
                             </p>
-                            <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-                                I enjoy solving algorithmic challenges and contributing to open-source projects. I&apos;m always eager to learn and explore new technologies.
+                            <p className="text-sm leading-relaxed sm:text-base">
+                                B.Tech in Computer Science (CGPA 9.0) from Poornima Institute of Engineering &amp; Technology. I also mentor CS students at <Hl>DevLearn</Hl>.
                             </p>
-                            <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-                                Thank you for taking the time to learn more about me!
-                            </p>
+                            <a
+                                href="#contact"
+                                className="group inline-flex items-center gap-2 pt-2 text-sm font-semibold text-indigo-300 transition hover:text-white sm:text-base"
+                            >
+                                Have a project or role in mind? Let&apos;s talk
+                                <span className="transition-transform group-hover:translate-x-1">→</span>
+                            </a>
                         </div>
                     </Reveal>
+                </div>
+
+                {/* Highlights */}
+                <div className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-4">
+                    {stats.map((stat, i) => (
+                        <Reveal key={stat.label} from="flip" delay={i * 0.08}>
+                            <div className="glass h-full rounded-2xl p-5 text-center">
+                                <p className="text-gradient text-3xl font-bold md:text-4xl">{stat.value}</p>
+                                <p className="mt-1 text-xs text-gray-400 sm:text-sm">{stat.label}</p>
+                            </div>
+                        </Reveal>
+                    ))}
                 </div>
 
                 {/* Experience timeline */}
@@ -212,13 +223,20 @@ const AboutSection = () => {
                                                     <p className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-300">
                                                         {experience.dates}
                                                     </p>
-                                                    <h4 className="text-lg font-semibold text-gray-100">{experience.position}</h4>
+                                                    <h4 className="text-lg font-semibold text-gray-100">
+                                                        {experience.role} <span className="font-normal italic text-gray-400">| {experience.stack}</span>
+                                                    </h4>
                                                     <p className="mb-3 text-sm text-gray-400">
                                                         <span className="font-medium text-indigo-200">{experience.company}</span> · {experience.location}
                                                     </p>
-                                                    <p className="text-sm leading-relaxed text-gray-300 sm:text-base">
-                                                        {experience.description}
-                                                    </p>
+                                                    <ul className="space-y-2 text-sm leading-relaxed text-gray-300">
+                                                        {experience.points.map((point, i) => (
+                                                            <li key={i} className="flex gap-2">
+                                                                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-400" />
+                                                                <span>{point}</span>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
                                                 </div>
                                             </TiltCard>
                                         </Reveal>
@@ -226,6 +244,25 @@ const AboutSection = () => {
                                 );
                             })}
                         </div>
+                    </div>
+                </div>
+
+                {/* Achievements & leadership */}
+                <div className="mt-24">
+                    <Reveal>
+                        <h3 className="mb-10 text-center text-3xl font-semibold text-indigo-300">Achievements &amp; Leadership</h3>
+                    </Reveal>
+                    <div className="grid gap-4 md:grid-cols-3">
+                        {achievements.map((item, i) => (
+                            <Reveal key={i} from="up" delay={i * 0.1}>
+                                <TiltCard intensity={6} className="rounded-2xl">
+                                    <div className="glass h-full rounded-2xl p-6 text-sm leading-relaxed text-gray-300 sm:text-base">
+                                        <span className="mb-3 block font-mono text-xs text-cyan-300">0{i + 1}</span>
+                                        {item}
+                                    </div>
+                                </TiltCard>
+                            </Reveal>
+                        ))}
                     </div>
                 </div>
 

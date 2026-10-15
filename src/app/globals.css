@@ -45,6 +45,8 @@ body {
 }
 
 /* ---------- Ambient page background ---------- */
+/* Blobs are soft radial gradients (no `filter: blur`) and only animate transform,
+   so they stay on the GPU compositor and never trigger repaints. */
 .aurora {
   position: fixed;
   inset: 0;
@@ -52,41 +54,41 @@ body {
   pointer-events: none;
   overflow: hidden;
   background: radial-gradient(ellipse at top, #0b0d24 0%, var(--bg) 60%);
+  contain: strict;
 }
 
 .aurora span {
   position: absolute;
   border-radius: 9999px;
-  filter: blur(90px);
-  opacity: 0.35;
+  opacity: 0.55;
+  will-change: transform;
   animation: drift 22s ease-in-out infinite alternate;
 }
 
 .aurora span:nth-child(1) {
-  width: 520px;
-  height: 520px;
-  background: #4f46e5;
-  top: -10%;
-  left: -10%;
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(circle, rgba(79, 70, 229, 0.55) 0%, rgba(79, 70, 229, 0) 65%);
+  top: -35%;
+  left: -30%;
 }
 
 .aurora span:nth-child(2) {
-  width: 420px;
-  height: 420px;
-  background: #9333ea;
-  top: 40%;
-  right: -12%;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(147, 51, 234, 0.45) 0%, rgba(147, 51, 234, 0) 65%);
+  top: 20%;
+  right: -35%;
   animation-delay: -6s;
 }
 
 .aurora span:nth-child(3) {
-  width: 380px;
-  height: 380px;
-  background: #0891b2;
-  bottom: -15%;
-  left: 25%;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(8, 145, 178, 0.35) 0%, rgba(8, 145, 178, 0) 65%);
+  bottom: -40%;
+  left: 10%;
   animation-delay: -12s;
-  opacity: 0.22;
 }
 
 @keyframes drift {
@@ -103,7 +105,7 @@ body {
   }
 }
 
-/* Subtle dotted grid over the whole page */
+/* Subtle dotted grid over the whole page (static, promoted to its own layer) */
 .grid-overlay {
   position: fixed;
   inset: 0;
@@ -112,57 +114,68 @@ body {
   background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
   background-size: 28px 28px;
   mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  transform: translateZ(0);
 }
 
-/* Synthwave-style 3D perspective floor under the hero */
+/* Synthwave-style 3D perspective floor under the hero.
+   The grid lives on a taller child that slides with transform (compositor-only)
+   instead of animating background-position (repaint every frame). */
 .perspective-floor {
   position: absolute;
   left: -50%;
   right: -50%;
   bottom: 0;
   height: 55%;
+  overflow: hidden;
   transform: perspective(500px) rotateX(70deg);
   transform-origin: bottom center;
-  background-image:
-    linear-gradient(rgba(129, 140, 248, 0.35) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(129, 140, 248, 0.35) 1px, transparent 1px);
-  background-size: 60px 60px;
-  animation: floor-move 3s linear infinite;
   mask-image: linear-gradient(to top, black 10%, transparent 90%);
   pointer-events: none;
 }
 
+.perspective-floor::before {
+  content: "";
+  position: absolute;
+  inset: -60px 0 0 0;
+  background-image:
+    linear-gradient(rgba(129, 140, 248, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(129, 140, 248, 0.35) 1px, transparent 1px);
+  background-size: 60px 60px;
+  will-change: transform;
+  animation: floor-move 3s linear infinite;
+}
+
 @keyframes floor-move {
   from {
-    background-position: 0 0;
+    transform: translate3d(0, 0, 0);
   }
 
   to {
-    background-position: 0 60px;
+    transform: translate3d(0, 60px, 0);
   }
 }
 
 /* ---------- Reusable pieces ---------- */
+/* No backdrop-filter here: blurring what's behind every card on every frame
+   (over an animated background + WebGL canvas) is the main source of scroll jank. */
 .glass {
-  background: rgba(17, 20, 45, 0.55);
+  background: rgba(17, 20, 45, 0.72);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Real frosted blur only for the small fixed navbar */
+.glass-nav {
+  background: rgba(10, 12, 30, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .text-gradient {
-  background: linear-gradient(90deg, #a5b4fc, #c084fc, #67e8f9, #a5b4fc);
-  background-size: 300% 100%;
+  background: linear-gradient(90deg, #a5b4fc, #c084fc, #67e8f9);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: gradient-pan 8s linear infinite;
-}
-
-@keyframes gradient-pan {
-  to {
-    background-position: 300% 0;
-  }
 }
 
 /* Animated gradient border (wrap content in .gradient-border > .inner) */
@@ -191,7 +204,7 @@ body {
   white-space: nowrap;
   border-right: 0.15em solid var(--accent);
   width: calc(var(--chars, 40) * 1ch);
-  animation: typing 4s steps(60, end), blink-caret 1s step-end infinite;
+  animation: typing 4s steps(62, end), blink-caret 1s step-end infinite;
   font-family: var(--font-mono), monospace;
 }
 
@@ -211,22 +224,28 @@ body {
   }
 }
 
-@keyframes shadow-pulse {
-  0% {
-    box-shadow: 0 0 40px rgba(99, 102, 241, 0.15), 0 0 20px rgba(192, 132, 252, 0.08);
-  }
-
-  50% {
-    box-shadow: 0 0 60px rgba(99, 102, 241, 0.35), 0 0 40px rgba(192, 132, 252, 0.2);
-  }
-
-  100% {
-    box-shadow: 0 0 40px rgba(99, 102, 241, 0.15), 0 0 20px rgba(192, 132, 252, 0.08);
-  }
+/* Pulsing glow: the shadow is painted once on a pseudo-element and only its
+   opacity animates (compositor-only) instead of animating box-shadow. */
+.shadow-animation {
+  position: relative;
 }
 
-.shadow-animation {
-  animation: shadow-pulse 3s infinite;
+.shadow-animation::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: 0 0 60px rgba(99, 102, 241, 0.35), 0 0 40px rgba(192, 132, 252, 0.2);
+  opacity: 0.4;
+  will-change: opacity;
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  50% {
+    opacity: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
-import { motion } from "framer-motion";
-import { FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { FaEnvelope, FaLinkedin, FaGithub } from "react-icons/fa";
 import { HiArrowDown } from "react-icons/hi";
 
 // WebGL scene is client-only; load it after hydration
@@ -19,16 +20,41 @@ const item = {
 const socials = [
     { href: "https://www.linkedin.com/in/rajeev-ranjan-dev", icon: <FaLinkedin />, label: "LinkedIn" },
     { href: "https://github.com/rajeevranjan413", icon: <FaGithub />, label: "GitHub" },
-    { href: "https://twitter.com", icon: <FaTwitter />, label: "Twitter" },
+    { href: "mailto:rajuranjan413@gmail.com", icon: <FaEnvelope />, label: "Email" },
 ];
 
 export const HeroSection = () => {
+    const sectionRef = useRef<HTMLElement>(null);
+    // Pause the WebGL render loop whenever the hero is scrolled out of view
+    const inView = useInView(sectionRef, { margin: "100px 0px" });
+    const [sceneReady, setSceneReady] = useState(false);
+
+    // Mount the heavy 3D scene only after the intro text animation has had the
+    // main thread to itself, so the first second of the page stays smooth.
+    useEffect(() => {
+        const w = window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number };
+        let idle: number | undefined;
+        const timer = window.setTimeout(() => {
+            if (w.requestIdleCallback) idle = w.requestIdleCallback(() => setSceneReady(true), { timeout: 800 });
+            else setSceneReady(true);
+        }, 700);
+        return () => {
+            window.clearTimeout(timer);
+            if (idle !== undefined) (window as Window & { cancelIdleCallback?: (id: number) => void }).cancelIdleCallback?.(idle);
+        };
+    }, []);
+
     return (
-        <section className="relative flex min-h-screen items-center overflow-hidden text-white">
+        <section ref={sectionRef} className="relative flex min-h-screen items-center overflow-hidden text-white">
             {/* 3D background */}
-            <div className="absolute inset-0">
-                <HeroScene />
-            </div>
+            <motion.div
+                className="absolute inset-0"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: sceneReady ? 1 : 0 }}
+                transition={{ duration: 1.2 }}
+            >
+                {sceneReady && <HeroScene active={inView} />}
+            </motion.div>
             <div className="perspective-floor" aria-hidden />
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#05060f] to-transparent" />
 
@@ -39,57 +65,46 @@ export const HeroSection = () => {
                 style={{ perspective: 800 }}
                 className="pointer-events-none relative z-10 mx-auto w-full max-w-7xl px-4 pb-16 pt-24 text-center sm:px-6 lg:px-8 lg:text-left"
             >
-                <motion.p variants={item} className="mb-4 font-mono text-sm uppercase tracking-[0.35em] text-indigo-300">
+                <motion.p variants={item} className="mb-5 font-mono text-xs uppercase tracking-[0.3em] text-indigo-300 sm:text-sm">
                     <span className="mr-2 inline-block h-2 w-2 animate-pulse rounded-full bg-emerald-400 align-middle" />
-                    Available for work
+                    Jaipur, India · 3+ years experience
                 </motion.p>
 
-                <motion.h1 variants={item} className="mb-6 text-5xl font-bold leading-tight md:text-7xl">
+                <motion.h1 variants={item} className="mb-5 text-5xl font-bold leading-tight md:text-7xl">
                     Hi, I&apos;m <br className="hidden lg:block" />
                     <span className="text-gradient">Rajeev Ranjan</span>
                 </motion.h1>
 
-                {/* Typing animation */}
-                <motion.div variants={item} className="mb-10 hidden md:block">
+                {/* Role: typed on desktop, static on mobile */}
+                <motion.div variants={item} className="mb-5 hidden md:block">
                     <p
-                        className="typing-animation max-w-full text-lg text-gray-300 lg:text-xl"
-                        style={{ "--chars": 53 } as React.CSSProperties}
+                        className="typing-animation max-w-full text-lg text-indigo-200 lg:text-xl"
+                        style={{ "--chars": 62 } as React.CSSProperties}
                     >
-                        FullStack Developer · React, Next.js, Node.js & more.
+                        Full Stack Software Engineer · Node.js, Next.js, Shopify & AWS
                     </p>
                 </motion.div>
-                <motion.div variants={item} className="md:hidden">
-                    <p className="mb-10 max-w-full text-base text-gray-300 sm:text-lg">
-                        FullStack Developer with experience in React, Next.js, Node.js, and
-                        more.
-                    </p>
-                </motion.div>
+                <motion.p variants={item} className="mb-5 font-mono text-base text-indigo-200 md:hidden">
+                    Full Stack Software Engineer
+                </motion.p>
 
-                {/* Social Icons */}
-                <motion.div variants={item} className="pointer-events-auto mb-10 flex justify-center gap-4 lg:justify-start">
-                    {socials.map((s) => (
-                        <motion.a
-                            key={s.label}
-                            href={s.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={s.label}
-                            whileHover={{ y: -6, rotateY: 180 }}
-                            transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                            className="glass flex h-12 w-12 items-center justify-center rounded-xl text-xl text-gray-200 hover:text-indigo-300"
-                        >
-                            {s.icon}
-                        </motion.a>
-                    ))}
-                </motion.div>
+                {/* Value proposition */}
+                <motion.p
+                    variants={item}
+                    className="mx-auto mb-9 max-w-xl text-base leading-relaxed text-gray-300 sm:text-lg lg:mx-0"
+                >
+                    I build fast, scalable <span className="text-white">e-commerce platforms</span>,{" "}
+                    <span className="text-white">Shopify apps</span> and <span className="text-white">SaaS products</span>,
+                    from polished Next.js frontends to serverless AWS backends.
+                </motion.p>
 
                 {/* Buttons */}
-                <motion.div variants={item} className="pointer-events-auto flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
+                <motion.div variants={item} className="pointer-events-auto mb-10 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
                     <a
                         href="#projects"
                         className="btn-glow rounded-xl px-8 py-4 text-lg font-semibold text-white"
                     >
-                        See My Work
+                        View My Work
                     </a>
                     <a
                         href="/assets/resume.pdf"
@@ -98,6 +113,36 @@ export const HeroSection = () => {
                     >
                         Download Resume
                     </a>
+                </motion.div>
+
+                {/* Socials + where I work */}
+                <motion.div
+                    variants={item}
+                    className="pointer-events-auto flex flex-col items-center gap-5 sm:flex-row sm:justify-center lg:justify-start"
+                >
+                    <div className="flex gap-3">
+                        {socials.map((s) => (
+                            <motion.a
+                                key={s.label}
+                                href={s.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={s.label}
+                                whileHover={{ y: -6, rotateY: 180 }}
+                                transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                                className="glass flex h-11 w-11 items-center justify-center rounded-xl text-lg text-gray-200 hover:text-indigo-300"
+                            >
+                                {s.icon}
+                            </motion.a>
+                        ))}
+                    </div>
+                    <span className="hidden h-8 w-px bg-white/10 sm:block" />
+                    <p className="text-sm text-gray-400">
+                        Currently at <span className="font-medium text-gray-200">Codeking Technologies</span>
+                        <span className="mx-2 text-gray-600">·</span>
+                        Previously <span className="font-medium text-gray-200">Ubuy</span>,{" "}
+                        <span className="font-medium text-gray-200">Apna School</span>
+                    </p>
                 </motion.div>
             </motion.div>
 

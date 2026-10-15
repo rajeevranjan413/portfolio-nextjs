@@ -1,9 +1,10 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import {
   Float,
   MeshDistortMaterial,
+  PerformanceMonitor,
   Sparkles,
   Stars,
 } from "@react-three/drei";
@@ -43,7 +44,7 @@ const Core = () => {
     <group ref={group} position={[x, y, z]} scale={scale}>
       <Float speed={2} rotationIntensity={0.6} floatIntensity={1.2}>
         <mesh>
-          <icosahedronGeometry args={[1.35, 64]} />
+          <icosahedronGeometry args={[1.35, 28]} />
           <MeshDistortMaterial
             color="#6366f1"
             emissive="#3b0f8f"
@@ -117,23 +118,39 @@ const CameraRig = () => {
   return null;
 };
 
-export default function HeroScene() {
+interface HeroSceneProps {
+  // When false the render loop stops entirely (hero scrolled out of view)
+  active?: boolean;
+}
+
+export default function HeroScene({ active = true }: HeroSceneProps) {
+  // Start at a modest pixel ratio and let PerformanceMonitor raise/lower it
+  // based on the measured frame rate of this device.
+  const [dpr, setDpr] = useState(1.25);
+
   return (
     <Canvas
       camera={{ position: [0, 0, 8], fov: 50 }}
-      dpr={[1, 1.75]}
-      gl={{ antialias: true, alpha: true }}
+      dpr={dpr}
+      frameloop={active ? "always" : "never"}
+      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       // Listen on the whole page so the overlaid text doesn't block mouse parallax
       eventSource={document.body}
       eventPrefix="client"
     >
+      <PerformanceMonitor
+        onIncline={() => setDpr(Math.min(window.devicePixelRatio, 1.75))}
+        onDecline={() => setDpr(1)}
+        flipflops={3}
+        onFallback={() => setDpr(1)}
+      />
       <ambientLight intensity={0.35} />
       <pointLight position={[5, 5, 5]} intensity={60} color="#a5b4fc" />
       <pointLight position={[-5, -3, 2]} intensity={40} color="#c084fc" />
       <pointLight position={[0, 4, -4]} intensity={30} color="#22d3ee" />
 
-      <Stars radius={60} depth={40} count={2500} factor={3} saturation={0} fade speed={1} />
-      <Sparkles count={60} scale={[14, 8, 6]} size={2.5} speed={0.4} color="#c4b5fd" />
+      <Stars radius={60} depth={40} count={1500} factor={3.5} saturation={0} fade speed={1} />
+      <Sparkles count={40} scale={[14, 8, 6]} size={2.5} speed={0.4} color="#c4b5fd" />
 
       <Core />
       <Debris />

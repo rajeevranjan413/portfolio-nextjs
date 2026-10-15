@@ -26,14 +26,17 @@ const SkillSphere = ({ skills }: SkillSphereProps) => {
   }, [skills]);
 
   useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
     const pts = points.map((p) => ({ ...p }));
+    const zCache: number[] = [];
     let frame = 0;
+    let running = false;
+    // Cache the size instead of reading layout (clientWidth) every frame
+    let radius = el.clientWidth / 2.6;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const tick = () => {
-      const el = containerRef.current;
-      if (!el) return;
-      const radius = el.clientWidth / 2.6;
       const ay = reduce ? 0 : pointer.current.x * 0.02;
       const ax = reduce ? 0 : -pointer.current.y * 0.02;
       const cy = Math.cos(ay), sy = Math.sin(ay);
@@ -53,14 +56,41 @@ const SkillSphere = ({ skills }: SkillSphereProps) => {
         if (!tag) return;
         const scale = (p.z + 2) / 3; // 0.33 .. 1
         tag.style.transform = `translate(-50%, -50%) translate3d(${p.x * radius}px, ${p.y * radius}px, 0) scale(${scale})`;
-        tag.style.opacity = String(0.25 + scale * 0.75);
-        tag.style.zIndex = String(Math.round(scale * 100));
-        tag.style.filter = p.z < -0.3 ? "blur(1px)" : "none";
+        tag.style.opacity = String(0.2 + scale * 0.8);
+        // Re-stacking forces a repaint, so only touch z-index when the bucket changes
+        const z = Math.round(scale * 10);
+        if (zCache[i] !== z) {
+          zCache[i] = z;
+          tag.style.zIndex = String(z);
+        }
       });
+      if (running) frame = requestAnimationFrame(tick);
+    };
+
+    const start = () => {
+      if (running) return;
+      running = true;
       frame = requestAnimationFrame(tick);
     };
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
+    const stop = () => {
+      running = false;
+      cancelAnimationFrame(frame);
+    };
+
+    // Draw one frame so tags are placed, then only animate while visible
+    tick();
+    const io = new IntersectionObserver(([entry]) => (entry.isIntersecting && !reduce ? start() : stop()));
+    io.observe(el);
+    const ro = new ResizeObserver(() => {
+      radius = el.clientWidth / 2.6;
+    });
+    ro.observe(el);
+
+    return () => {
+      stop();
+      io.disconnect();
+      ro.disconnect();
+    };
   }, [points]);
 
   const handleMove = (e: React.PointerEvent<HTMLDivElement>) => {

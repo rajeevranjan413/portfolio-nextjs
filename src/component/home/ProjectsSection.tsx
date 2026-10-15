@@ -1,5 +1,6 @@
 
 import React from "react";
+import Image from "next/image";
 import { FaGithub } from "react-icons/fa";
 import { FiArrowUpRight } from "react-icons/fi";
 import Reveal from "../ui/Reveal";
@@ -8,17 +9,17 @@ import SectionHeading from "../ui/SectionHeading";
 
 const projectsData = [
     {
-        title: "Design Editor - 3D Product Mockups",
-        technologies: "Python, JavaScript, WebGL, psd-tools, OpenCV, NumPy",
-        description: "Built a multi-product mockup editor that extracts the exact grid-warp from Photoshop smart objects into UV meshes, then renders uploaded artwork live onto hoodies, t-shirts and swimwear with a two-pass WebGL pipeline: per-panel masks plus fabric shading.",
+        title: "PSD-to-3D Product Mockup Engine",
+        technologies: "Python, OpenCV, NumPy, SciPy, psd-tools, WebGL",
+        description: "Extracts Photoshop smart-object grid-warp data from PSDs into exact UV/vertex meshes, with no image registration. A browser editor with a two-pass WebGL renderer warps artwork onto product meshes for live previews, and OpenCV slices per-size pattern PDFs into 300 DPI print pieces. Powers 6+ apparel products.",
         image: "/assets/images/design-editor.jpg",
         link: "#",
         githubLink: "#",
     },
     {
         title: "Ubuy WebApp - Ecom Product",
-        technologies: "TypeScript, Nextjs, Reactjs, Express, Redux, SQL, Redis, Tailwind",
-        description: "Developed a responsive e-commerce platform with Next.js, featuring SSR, multiple product variations, and pre-order options. Enhanced performance and API efficiency, and added robust filtering and sorting options.",
+        technologies: "TypeScript, Next.js, React, Express, Redux, MySQL, Redis, Tailwind",
+        description: "Built a monorepo architecture for Ubuy's cross-border e-commerce web app, combining client-side routing with SSR product pages for fast navigation. Restructured Redux state flow to cut page re-renders by 2x, and built REST APIs on MySQL with Redis caching.",
         image: "/assets/images/ubuy.png", 
         link: "https://www.ubuy.bs/",
         githubLink: "#",
@@ -33,8 +34,8 @@ const projectsData = [
     },
     {
         title: "Apna School - ERP System",
-        technologies: "TypeScript, Next.js, NestJS, Reactjs, MongoDB, Tailwind CSS",
-        description: "Created a cloud-based ERP for schools to support communication among staff, students, and parents. Integrates data into a single platform with customizable modules for better operations and decision-making.",
+        technologies: "TypeScript, Next.js, NestJS, React, Zustand, MongoDB, Tailwind CSS",
+        description: "Built a cloud-based school ERP (web and Android) adopted by about 15 schools in the Delhi and Jaipur region, with attendance, staff–student–parent communication and resource management modules.",
         image: "/assets/images/apnaschool.png",  
         link: "https://apnaschoolapp.com/",
         githubLink: "#",
@@ -47,15 +48,14 @@ const projectsData = [
         link: "#",
         githubLink: "#",
     },
-    
-    // {
-    //     title: "DNS Resolver",
-    //     technologies: "UDP Protocols, JavaScript",
-    //     description: "Designed a DNS resolver to convert domain names to IPs, utilizing JavaScript for DNS query parsing. Efficiently manages multiple query types with reliable resolution processes.",
-    //     image: "https://via.placeholder.com/300x200", 
-    //     link: "#",
-    //     githubLink: "#",
-    // },
+    {
+        title: "DNS Resolver",
+        technologies: "JavaScript, Node.js, UDP",
+        description: "Built a DNS resolver from scratch that encodes and parses DNS packets over UDP, with support for multiple record types.",
+        image: "/assets/images/dns-resolver.svg",
+        link: "#",
+        githubLink: "#",
+    },
 ];
 
 
@@ -80,11 +80,16 @@ const ProjectsSection = () => {
                                             className="relative mb-5 overflow-hidden rounded-xl"
                                             style={{ transform: "translateZ(40px)" }}
                                         >
-                                            <img
-                                                src={project.image}
-                                                alt={project.title}
-                                                className="h-48 w-full object-cover transition duration-700 group-hover:scale-110 sm:h-52"
-                                            />
+                                            <div className="relative h-48 w-full sm:h-52">
+                                                <Image
+                                                    src={project.image}
+                                                    alt={project.title}
+                                                    fill
+                                                    unoptimized={project.image.endsWith(".svg")}
+                                                    sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
+                                                    className="object-cover transition duration-700 will-change-transform group-hover:scale-110"
+                                                />
+                                            </div>
                                             <div className="absolute inset-0 bg-gradient-to-t from-[#0b0d22] via-transparent to-transparent opacity-80" />
                                             <span className="absolute left-3 top-3 rounded-full bg-black/50 px-3 py-1 font-mono text-xs text-indigo-200 backdrop-blur">
                                                 0{index + 1}

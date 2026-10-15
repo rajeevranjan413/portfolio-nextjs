@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="675" viewBox="0 0 1080 675">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b0d24"/>
+      <stop offset="1" stop-color="#05060f"/>
+    </linearGradient>
+    <radialGradient id="g1" cx="0.15" cy="0.15" r="0.55">
+      <stop offset="0" stop-color="#4f46e5" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#4f46e5" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="0.85" cy="0.85" r="0.55">
+      <stop offset="0" stop-color="#9333ea" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#9333ea" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="title" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#c7d2fe"/>
+      <stop offset="0.5" stop-color="#d8b4fe"/>
+      <stop offset="1" stop-color="#67e8f9"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#818cf8"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse">
+      <rect x="13" y="13" width="1.5" height="1.5" fill="#ffffff" fill-opacity="0.06"/>
+    </pattern>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1080" height="675" fill="url(#bg)"/>
+  <rect width="1080" height="675" fill="url(#g1)"/>
+  <rect width="1080" height="675" fill="url(#g2)"/>
+  <rect width="1080" height="675" fill="url(#dots)"/>
+
+  <!-- Title -->
+  <text x="60" y="92" font-family="JetBrains Mono, Consolas, monospace" font-size="15" font-weight="600" fill="#a5b4fc" letter-spacing="1">UDP · PORT 53 · RFC 1035</text>
+  <text x="58" y="150" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="50" font-weight="700" fill="url(#title)">DNS Resolver</text>
+  <text x="60" y="186" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="18" fill="#9ca3af">Built from scratch: encode, send, parse</text>
+
+  <!-- Terminal -->
+  <g transform="translate(60 225)">
+    <rect width="560" height="360" rx="18" fill="#0a0b1a" stroke="url(#edge)" stroke-opacity="0.7" stroke-width="2"/>
+    <rect width="560" height="40" rx="18" fill="#11142d"/>
+    <rect y="22" width="560" height="18" fill="#11142d"/>
+    <circle cx="22" cy="20" r="6" fill="#ef4444"/>
+    <circle cx="42" cy="20" r="6" fill="#eab308"/>
+    <circle cx="62" cy="20" r="6" fill="#22c55e"/>
+    <text x="90" y="25" font-family="JetBrains Mono, Consolas, monospace" font-size="13" fill="#6b7280">resolver.js</text>
+
+    <g font-family="JetBrains Mono, Consolas, monospace" font-size="15">
+      <text x="24" y="78" fill="#e5e7eb"><tspan fill="#34d399">$</tspan> node resolver.js github.com A</text>
+      <text x="24" y="114" fill="#9ca3af"><tspan fill="#818cf8">→ query </tspan> id=0x1f3a  QTYPE=A  QCLASS=IN</text>
+      <text x="24" y="144" fill="#9ca3af"><tspan fill="#818cf8">→ send  </tspan> udp/53 → 198.41.0.4  (root)</text>
+      <text x="24" y="174" fill="#9ca3af"><tspan fill="#c084fc">← refer </tspan> com.  NS  a.gtld-servers.net</text>
+      <text x="24" y="204" fill="#9ca3af"><tspan fill="#c084fc">← refer </tspan> github.com.  NS  dns1.p08.nsone.net</text>
+      <text x="24" y="234" fill="#e5e7eb"><tspan fill="#22d3ee">← answer</tspan> github.com.  A  <tspan fill="#67e8f9">140.82.121.4</tspan></text>
+      <text x="24" y="264" fill="#6b7280">  ttl=60  rcode=NOERROR  3 hops  41 ms</text>
+      <text x="24" y="306" fill="#4b5563" font-size="13">0000  1f 3a 01 00 00 01 00 00 00 00 00 00 06 67</text>
+      <text x="24" y="328" fill="#4b5563" font-size="13">0010  69 74 68 75 62 03 63 6f 6d 00 00 01 00 01</text>
+    </g>
+  </g>
+
+  <!-- Resolution path -->
+  <g font-family="JetBrains Mono, Consolas, monospace" font-size="14" text-anchor="middle">
+    <path d="M 860 150 C 960 190, 960 250, 860 290" fill="none" stroke="#c084fc" stroke-width="3" stroke-dasharray="9 7"/>
+    <path d="M 860 330 C 960 370, 960 430, 860 470" fill="none" stroke="#c084fc" stroke-width="3" stroke-dasharray="9 7"/>
+    <path d="M 760 470 C 680 400, 680 220, 760 150" fill="none" stroke="#22d3ee" stroke-width="3" stroke-opacity="0.8"/>
+
+    <g filter="url(#glow)">
+      <rect x="740" y="110" width="140" height="64" rx="14" fill="#1e1b4b" stroke="#818cf8" stroke-width="2"/>
+      <rect x="740" y="282" width="140" height="64" rx="14" fill="#2e1065" stroke="#c084fc" stroke-width="2"/>
+      <rect x="740" y="454" width="140" height="64" rx="14" fill="#083344" stroke="#22d3ee" stroke-width="2"/>
+    </g>
+    <text x="810" y="140" fill="#e0e7ff" font-weight="700">ROOT</text>
+    <text x="810" y="160" fill="#a5b4fc" font-size="12">198.41.0.4</text>
+    <text x="810" y="312" fill="#f3e8ff" font-weight="700">TLD .com</text>
+    <text x="810" y="332" fill="#d8b4fe" font-size="12">gtld-servers</text>
+    <text x="810" y="484" fill="#cffafe" font-weight="700">AUTHORITATIVE</text>
+    <text x="810" y="504" fill="#67e8f9" font-size="12">nsone.net</text>
+    <text x="668" y="318" fill="#67e8f9" font-size="12" transform="rotate(-90 668 318)">A record</text>
+  </g>
+
+  <!-- Chips -->
+  <g font-family="JetBrains Mono, Consolas, monospace" font-size="13" fill="#c7d2fe">
+    <rect x="60" y="605" width="108" height="28" rx="8" fill="#6366f1" fill-opacity="0.18" stroke="#818cf8" stroke-opacity="0.4"/>
+    <text x="74" y="624">JavaScript</text>
+    <rect x="176" y="605" width="82" height="28" rx="8" fill="#6366f1" fill-opacity="0.18" stroke="#818cf8" stroke-opacity="0.4"/>
+    <text x="190" y="624">Node.js</text>
+    <rect x="266" y="605" width="50" height="28" rx="8" fill="#6366f1" fill-opacity="0.18" stroke="#818cf8" stroke-opacity="0.4"/>
+    <text x="280" y="624">UDP</text>
+  </g>
+</svg>

@@ -33,7 +33,7 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed inset-x-0 top-0 z-50 text-white transition-colors duration-300 ${
-        scrolled ? "glass border-x-0 border-t-0" : "bg-transparent"
+        scrolled ? "glass-nav" : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
